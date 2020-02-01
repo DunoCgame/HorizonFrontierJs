@@ -1,12 +1,20 @@
 {
-  "name": "HorizonFrontierJs",
-  "version": "1.0.0",
-  "description": "Library for the development of Video Games using Javascript technology",
-  "main": "HorizonFrontierJs.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "'Luis <'luisdunocastellano@gmail.com'>",
-  "license": "MIT"
-}
+  "name": "horizonfrontierjs",
+    "description":"Library for the development of Video Games using Javascript technology",
+    "version": "1.0.0",
+    "main": "HorizonFrontierJs.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/DunoCgame/HorizonFrontierJs.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/DunoCgame/HorizonFrontierJs/issues"
+    },
+    "homepage": "https://github.com/DunoCgame/HorizonFrontierJs"
+  }
