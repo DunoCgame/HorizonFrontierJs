@@ -1,12 +1,12 @@
-HorizonFrontierJs
+# HorizonFrontierJs
 ==================
 
 Library for the development of Video Games using Javascript technology
 
+## installation NPM
+==================
 
-###### installation NPM
-
-'npm i horizonfrontierjs'
+>npm i horizonfrontierjs
 
 
 
