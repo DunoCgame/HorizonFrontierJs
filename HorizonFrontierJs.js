@@ -59,12 +59,11 @@ function Square(X,Y,W,H,rote,Color){
 			ctx.restore();
 }
 /*Circle*/
-function Circle(X, Y, R, A_start, A_end,rote, Color){
+function Circle(X, Y, R, rote, Color){
 	this.X=X;
 	this.Y=Y;
 	this.R=R;
-	this.A_start=A_start;
-	this.A_end=A_end;
+
 	this.rote=rote;
 	this.Color=Color;
 	ctx=Screen.context;
@@ -72,7 +71,7 @@ function Circle(X, Y, R, A_start, A_end,rote, Color){
 				ctx.rotate(rote * Math.PI / 180);
 				ctx.fillStyle=Color;
 				ctx.beginPath();
-				ctx.arc(this.X, this.Y, this.R, this.A_start, this.A_end, (Math.PI/180)*360,true);
+				ctx.arc(this.X, this.Y, this.R,50, 0, (Math.PI/180)*360,true);
 				ctx.closePath;
 				ctx.fill();
 }
@@ -184,13 +183,10 @@ ctx=Screen.context;
 //*Transisiones*// //*Transisiones*//////
 var Opacidad = 1;
 let transition={
-		Decen:1,
-		Acen:0,
-		T:0,
-		state:false,
-A:function(color,state){
-			
-			
+			Decen:1,
+			Acen:0,
+			state:false,
+A:function(color){
 			
 					this.color=color;
 					ctx=Screen.context;
@@ -200,10 +196,8 @@ A:function(color,state){
 				if(this.Acen<H){this.Acen+=10;				}
 				
 					if(this.Acen==H){this.Acen+=10; 		
-					
 					this.state=true;
 					}
-	
 							ctx.save();
 							ctx.fillStyle = this.color;
 							ctx.fillRect(0,0, W, this.Acen);
@@ -224,8 +218,6 @@ B:function(color){
 					
 					this.state=true;
 					}
-				
-
 						ctx.save();
 						ctx.fillStyle = this.color;
 						ctx.fillRect(0,H, W, this.Acen);
@@ -305,25 +297,16 @@ F:function(color){
 	ctx=Screen.context;
 	W=Screen.Canvas.width;
 	H=Screen.Canvas.height;
-	
-	
-	
+
 	if(this.Decen >=0.1 ){
 		this.Decen -= 0.01;
-		
 	}
 	
-
 ctx.save();
-
 ctx.globalAlpha = this.Decen;
 ctx.fillStyle = this.color;
 ctx.fillRect(0,0, W, H);
 ctx.restore();		
-			
-			
-			
-			
 			
 			
 			},
@@ -339,7 +322,7 @@ ctx.restore();
 /*****************************************************/			
 		
 /*Posicion de mause*/ /*Posicion de mause*/ /*Posicion de mause*/
-// var Mouse={PosX:0,PosY:0};
+
 var Mouse={
 	PosX:0,
 	PosY:0,
@@ -407,16 +390,6 @@ document.getElementById("body").addEventListener( "keyup", function(e){
 /*Eventos del teclado*/
 // sistema_colision
 
-
-//Anfulo entre dos puntos
-function Angletwopoints(PosX1, PosY1,PosX2, PosY2){
-	
-	var Pendiente=((PosX1-(PosX2))/((PosY1-(PosY2))));
-	var AnguloenRadianes=Math.tan(Pendiente);
-	var Angulo=Math.floor(AnguloenRadianes*(180/Math.PI));
-	return Angulo;
-	
-}
 //Colisiones por circunferencia
 function Distancepoints(PosX1, PosY1,PosX2, PosY2){
 
@@ -425,18 +398,55 @@ function Distancepoints(PosX1, PosY1,PosX2, PosY2){
 
 }
 
+
+//Angulo entre dos puntos
+function Angletwopoints(PosX1, PosY1,PosX2, PosY2){
+	
+	var Pendiente=((PosX1-(PosX2))/((PosY1-(PosY2))));
+	var AnguloenRadianes=Math.tan(Pendiente);
+	var Angulo=Math.floor(AnguloenRadianes*(180/Math.PI));
+	return Angulo;
+	
+}
+
+
 // circleCollision
 //BoxCollision
-function BoxCollision(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
+var BoxCollision = {
+	state:false,
+	init:function(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
 	if ( ((PosX1+W1) > PosX2)  &&  (PosX1 < (PosX2+W2)) ) {          
 		if ( ((PosY1+H1) > PosY2)  &&  (PosY1 < (PosY2+H2)) ) {
-			return true;
+			
+			BoxCollision.state=true;
 		}
 	}
 	else{
-		return false;
+		BoxCollision.state=false;
 	}
 }
+}
+
+var CircleCollision={
+	state:false,
+	init:function(PosX1, PosY1, PosX2, PosY2, limit){
+
+	var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
+	if(Distancia_entre_dos_Puntos<=limit){
+		
+		CircleCollision.state=true;
+		
+	}
+	else{
+		CircleCollision.state=false;
+	}
+	
+}
+}
+
+
+
+
 /*sistema de colisiones*/ /*sistema de colisiones*/ /*sistema de colisiones*/
 /**********************/
 
@@ -506,24 +516,28 @@ let Time={
 	if(stateconter==true ){
 
 		if(Time.init<Capture){
-				Time.init+=1;
-		}
-		if(Time.init>0 && Time.init<Capture ){
 				
-					state=false;
+				Time.init+=1;
+				
+		}
+		if(Time.init<Capture ){				
+					
+					Time.state=false;
+					
 			}else
 				if(Time.init>=Capture){
 
-					state=true;
-					// Time.init=0;
+					Time.state=true;
+					
 				}
-				return state;
+				
+			
 			
 	}//cierre boleano
 
-} ,
+},
 //cierre delay 
-interval:function(Capture,f,stateconter){ 	
+interval:function(Capture,end,stateconter){ 	
 	
 if(stateconter==true){
 
@@ -531,19 +545,19 @@ if(stateconter==true){
 	
 		if(Time.i>0 && Time.i<Capture ){
 			
-				state=false;
+				Time.state=false;
 		 
 		}else
 			if(Time.i>=Capture){
 
-				state=true;
+				Time.state=true;
 				
 			}
 			
 			
-		if(Time.i==f){ 					Time.i=0; 				}
+		if(Time.i==end){ 	Time.i=0; 				}
 				
-			 return state;
+		
 
 	}//cierre boleano
 
@@ -566,8 +580,7 @@ let Gravity={
 			if(state==true){
 				
 				return G;
-				// NameObj+=G;
-				
+								
 				console.log("NameObj",NameObj);
 				
 				}
@@ -586,6 +599,7 @@ let Sound={
 	sound:document.createElement("audio"),
 init:function (url){
 	this.sound.src=url;
+	this.sound.setAttribute("preload", "auto");
 	this.sound.style.display = "none";
 	
 	document.body.appendChild(this.sound);
@@ -593,12 +607,16 @@ init:function (url){
 
 this.play = function(){
     this.sound.play();
+	
+	
   }
 this.stop = function(){
 	
     this.sound.pause();
-	this.sound.src="";
+	
+	
   }
+ 
 		
 	
 }
