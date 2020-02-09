@@ -182,7 +182,7 @@ ctx=Screen.context;
 /*****************************************************/
 //*Transisiones*// //*Transisiones*//////
 var Opacidad = 1;
-let transition={
+let Transition={
 			Decen:1,
 			Acen:0,
 			state:false,
@@ -511,7 +511,7 @@ let Time={
 	init:0,
 	i:0,
 	state:false,
-	delay:function(Capture,stateconter){
+	Delay:function(Capture,stateconter){
 	
 	if(stateconter==true ){
 
@@ -537,7 +537,7 @@ let Time={
 
 },
 //cierre delay 
-interval:function(Capture,end,stateconter){ 	
+Interval:function(Capture,end,stateconter){ 	
 	
 if(stateconter==true){
 
@@ -635,7 +635,7 @@ module.exports.Images=Images;
 module.exports.Sprite=Sprite;
 module.exports.Text=Text;
 module.exports.Debut=Debut;
-module.exports.transition=transition;
+module.exports.Transition=Transition;
 module.exports.Mouse=Mouse;
 module.exports.KeyboardEvents=KeyboardEvents;
 module.exports.Angletwopoints=Angletwopoints;
