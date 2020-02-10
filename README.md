@@ -37,7 +37,7 @@ Game_loop.start (LoopGame);
 The Geometry figures used in HorizonFrontierJs are the square and the circle these can use
 in different ways in your project.
 
-###### Create Square
+## Create Square
 
 >Square(X,Y,W,H,rote,Color)
 
@@ -53,9 +53,49 @@ in different ways in your project.
 
 >Circle(0, 0, 20, 10, 0, "red");
 
+## Images
 
+This function allows you to implement images in your project, to enter an object or a background to the stage.
 
+> Images(X,Y,W,H,Url);
 
+###### Example
 
+>Images(0,0,100,100,'../image.png');
 
+## Sprite
 
+Add a sprite sheet to the stage
+
+> Sprite(x,y,X,Y,W,H,'./url.png');
+
+###### Example
+
+>Sprite(0,0,0,0,100,100,'../url.png');
+
+## Text
+
+As the name implies, enter text into the scene.
+
+>Text(text,tamaño,color,X,Y);
+
+###### Example
+
+>Text('HelloWord',20px,"Black",10,10);
+
+## Debut
+
+Debut allows you to add a text for the purpose of being used to see the status of an event.
+
+>Debut(Var,X,Y);
+
+###### Example
+
+>Debut(transition.state,0,0);
+
+###### Recivir Variable por debut
+
+'
+var Numerico = 10;
+Debut(Numerico,0,0); ó Debut('Numerico'+':'+Numerico,0,0);
+'
