@@ -41,9 +41,18 @@ in different ways in your project.
 
 >Square(X,Y,W,H,rote,Color)
 
-###### Ejemplo:
+###### Example
 	
 >Square(0,0,100,100,0,"green");
+
+## Create Circle
+
+>Circle(X, Y, R, A_start, A_end,rote, Color);
+
+###### Example
+
+>Circle(0, 0, 20, 10, 0, "red");
+
 
 
 
