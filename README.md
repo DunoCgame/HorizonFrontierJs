@@ -226,5 +226,84 @@ Time.delay(30,true);
 
 >interval(Capture,end,stateconter);
 
+The counter starts at 0 and counts until you reach the end value and capture the action value.
+
+###### Example
+
+```
+Time.interval(20,40,true);
+
+Capture: It is the action value of the function.
+end: Indicates the final value of the counter.
+stateconter: It is a bool recive true for activation and false for disconnection.
+```
+
+## Sound
+
+This function allows you to add sound effects to the game.
+
+###### Initialization
+
+>Sound.init(url);
+
+It should be added outside the loop to avoid calling the audio file multiple times.
+
+###### Initial Reproduction
+
+>Sound.play();
+
+###### Pausar Reproduccion
+
+>Sound.stop();
+
+###### Example
+
+````
+Sound.init("./Sonido.mp3");
+````
+
+## Collision and Position Detection
+
+###### Distancepointos
+
+Detect the distance between the corresponding objects
+to the parameters assigned to the function.
+
+>Distancepoints(PosX-Object1,PosY-Object1,PosX-Object2, PosY-Object2);
+
+###### Example
+
+````
+if(Distancepoints(PosX-Object1,PosY-Object1,PosX-Object2, PosY-Object2)<5){
+
+/*Funciones*/
+}
+````
+
+###### Angletwopoints
+
+Detects the angle between two objects on the canvas.
+
+>Angletwopoints(PosX-Object1, PosY-Object1,PosX-Object2, PosY-Object2);
+
+###### Example
+
+````
+if(Angletwopoints(PosX-Objeto1, PosY-Objeto1,PosX-Objeto2, PosY-Objeto2)==0){
+
+/*Funciones*/
+
+}
+````
+
+## Box Collision
+
+# Nota
+
+La información presentada puede estarar sujeta a modificaciones o cambios.
+
+# License
+
+[MIT](https://github.com/DunoCgame/HorizonFrontierJs/blob/master/LICENSE).
 
 
