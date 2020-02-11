@@ -109,5 +109,23 @@ Transitions are useful to oculate the load from stage or to pass from one scene 
 
 >transition.A(color);
 
+To change the type of transition, change the letter to another of the alphabet,
+at the moment it is available until 'F'; "A, B, C, D, E, F".
+
+>transition.state;
+
+With 'transition.state' you can get the state of the transition this returns
+false at start and true at end.
+
+###### Example
+
+```
+transition.A("blue");
+		
+Debut("state"+":"+transition.state,10,10);
+```		
+
+
+
 
 
