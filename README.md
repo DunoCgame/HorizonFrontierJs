@@ -1,11 +1,10 @@
 # HorizonFrontierJs
 
-Library for the development of Video Games using Javascript technology
+Library for the development of Video Games using Javascript technology.
 
 ## Installation NPM
 
 >npm i horizonfrontierjs
-
 
 ###### Implementation
 
@@ -13,7 +12,7 @@ Library for the development of Video Games using Javascript technology
 
 ###### Initial Window
 
->Screen.Init(Ancho,Alto);
+>Screen.Init(Width,heigth);
 
 It is recommended to initialize the window outside the game cycle to avoid multiple canvas creation
 to get the full size of the browser window add to the parameters.
@@ -135,10 +134,10 @@ the width and h is the height, r corresponds to the radius of the circumference.
 
 >Mouse.Position(CursorVisibiliti,color,W,H,R);
 ```
-- Mouse.PosX
-- Mouse.PosY
-- Mouse.W
-- Mouse.H
+- Mouse.PosX;
+- Mouse.PosY;
+- Mouse.W;
+- Mouse.H;
 ```
 
 ## Keyboard Events
@@ -149,8 +148,7 @@ Add on the Game loop.
 >KeyboardEvents();
 
 ```
-if(Keyboard[/*Tecla a utilizar*/] == true){
-		
+if(Keyboard[/*Tecla a utilizar*/] == true){	
 		//Evento
 		}
 ```
@@ -158,7 +156,6 @@ if(Keyboard[/*Tecla a utilizar*/] == true){
 ## Touch Button
 
 Create a button on the canvas for use in mobile games or for other interactions by positioning the cursor on the true returned button when this happens, this function allows you to create two types of buttons one of circular shape and another square or rectangular.
-
 
 ## Circular Button
 
@@ -182,7 +179,7 @@ if(TactilButton.state==true){ //Action }
 
 ## Gravity
 
->Gravity.init(bool,valor);
+>Gravity.init(bool,value);
 
 If the bool parameter is set to true, gravity will affect the object.
 while the value parameter indicates the force of gravity.
@@ -198,9 +195,10 @@ This function allows you to control the activation time of a specific action.
 
 >Time.delay(Capture,stateconter);
 
-Capture: indicates the delay time stateconter: It's a bool recive true for activation
-and false for disconnection
-
+````
+Capture: indicates the delay time.
+stateconter: It's a bool recive true for activation and false for disconnection.
+````
 
 ###### Obtaining data from Time.delay
 
@@ -215,8 +213,7 @@ Time.state: Returns the boolean.
 Time.delay(30,true);
 	
 	if(Time.state==true){
-		/*Accion*/
-	
+		/*Action*/	
 	}
 ```
 
@@ -291,7 +288,7 @@ Detects the angle between two objects on the canvas.
 ````
 if(Angletwopoints(PosX-Objeto1, PosY-Objeto1,PosX-Objeto2, PosY-Objeto2)==0){
 
-/*Funciones*/
+/*Action*/
 
 }
 ````
