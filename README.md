@@ -6,7 +6,7 @@ Library for the development of Video Games using Javascript technology.
 
 >npm i horizonfrontierjs
 
-###### Implementation
+###### **Implementation**
 
 >const Game = require('horizonfrontierjs');
 
@@ -286,7 +286,7 @@ Detects the angle between two objects on the canvas.
 ###### Example
 
 ````
-if(Angletwopoints(PosX-Objeto1, PosY-Objeto1,PosX-Objeto2, PosY-Objeto2)==0){
+if(Angletwopoints(PosX-Object1, PosY-Object1,PosX-Object2, PosY-Object2)==0){
 
 /*Action*/
 
@@ -294,6 +294,26 @@ if(Angletwopoints(PosX-Objeto1, PosY-Objeto1,PosX-Objeto2, PosY-Objeto2)==0){
 ````
 
 ## Box Collision
+ 
+It allows the interaction between two objects created an interaction layer corresponding to a box
+
+>BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
+
+###### Example
+
+````
+BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
+
+var state_Collision=false;
+
+if(BoxCollision.state==true){
+	
+	state_Collision=true;
+	
+}
+else{ state_Collision=false;}
+
+````
 
 # Nota
 
