@@ -23,14 +23,17 @@ to get the full size of the browser window add to the parameters.
 >Game_loop.start (LoopGame function);
 
 ###### Example:
-'
+
+```
 (function LoopGame () {
 
       / *Game Features* /
       
 Game_loop.start (LoopGame);
 
-})();'
+})();
+
+```
 
 ## Crear Figuras
 
@@ -47,11 +50,11 @@ in different ways in your project.
 
 ## Create Circle
 
->Circle(X, Y, R, A_start, A_end,rote, Color);
+>Circle(X, Y, R, rote, Color);
 
 ###### Example
 
->Circle(0, 0, 20, 10, 0, "red");
+>Circle(0, 0, 0, 0, "red");
 
 ## Images
 
@@ -95,7 +98,16 @@ Debut allows you to add a text for the purpose of being used to see the status o
 
 ###### Recivir Variable por debut
 
-'
+```
 var Numerico = 10;
 Debut(Numerico,0,0); ó Debut('Numerico'+':'+Numerico,0,0);
-'
+```
+
+## Transitions
+
+Transitions are useful to oculate the load from stage or to pass from one scene to another an example It is in the RPG where the scene is changed when starting a fight.
+
+>transition.A(color);
+
+
+
