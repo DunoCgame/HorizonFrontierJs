@@ -259,7 +259,7 @@ It should be added outside the loop to avoid calling the audio file multiple tim
 Sound.init("./Sonido.mp3");
 ````
 
-## Collision and Position Detection
+## Position Detection
 
 ###### Distancepointos
 
@@ -292,8 +292,9 @@ if(Angletwopoints(PosX-Object1, PosY-Object1,PosX-Object2, PosY-Object2)==0){
 
 }
 ````
+## Collision System
 
-## Box Collision
+###### Box Collision
  
 It allows the interaction between two objects created an interaction layer corresponding to a box
 
@@ -307,6 +308,31 @@ BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2
 var state_Collision=false;
 
 if(BoxCollision.state==true){
+	
+	state_Collision=true;
+	
+}
+else{ state_Collision=false;}
+
+````
+
+###### Circle Collision
+
+It allows to detect collisions through a circular layer that surrounds the object.
+
+>CircleCollision.init(PosX-Object1, PosY-Object1, PosX-Object2, PosY-Object2, limit);
+
+
+````
+Limit:
+
+Determine the minimum distance between the two defined objects
+````
+
+###### Example
+
+````
+if(CircleCollision.state==true){
 	
 	state_Collision=true;
 	
