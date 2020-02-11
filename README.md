@@ -194,7 +194,7 @@ When the bool parameter is set to `` false``, the effect of gravity stops.
 
 This function allows you to control the activation time of a specific action.
 
-###### initial
+###### Initial
 
 >Time.delay(Capture,stateconter);
 
@@ -202,7 +202,29 @@ Capture: indicates the delay time stateconter: It's a bool recive true for activ
 and false for disconnection
 
 
+###### Obtaining data from Time.delay
 
+```
+Time.init: Get the counter value
+Time.state: Returns the boolean.
+```
+
+###### Example
+
+```
+Time.delay(30,true);
+	
+	if(Time.state==true){
+		/*Accion*/
+	
+	}
+```
+
+## Interval
+
+###### Initial
+
+>interval(Capture,end,stateconter);
 
 
 
