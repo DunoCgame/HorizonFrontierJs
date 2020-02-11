@@ -343,7 +343,7 @@ else{ state_Collision=false;}
 
 # Nota
 
-La información presentada puede estarar sujeta a modificaciones o cambios.
+The information presented may be subject to modifications or changes.
 
 # License
 
