@@ -121,9 +121,43 @@ false at start and true at end.
 
 ```
 transition.A("blue");
-		
+
 Debut("state"+":"+transition.state,10,10);
-```		
+
+```
+###### Mouse
+
+The "Mouse" option allows you to obtain the mouse position on the canvas, this
+generate a circle and square together to use with the touch buttons
+The parameters of this function are:
+Cursor Visibiliti lets is a bool color: indicates the color of the object W is 
+the width and h is the height, r corresponds to the radius of the circumference.
+
+>Mouse.Position(CursorVisibiliti,color,W,H,R);
+```
+-Mouse.PosX
+-Mouse.PosY
+-Mouse.W
+-Mouse.H
+```
+
+###### Keyboard Events
+
+Allows you to implement keyboard events on the canvas
+Add on the Game loop.
+
+>KeyboardEvents();
+
+```
+if(Keyboard[/*Tecla a utilizar*/] == true){
+		
+		//Evento
+		}
+```		  
+	
+
+
+
 
 
 
