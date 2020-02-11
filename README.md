@@ -125,7 +125,7 @@ transition.A("blue");
 Debut("state"+":"+transition.state,10,10);
 
 ```
-###### Mouse
+## Mouse
 
 The "Mouse" option allows you to obtain the mouse position on the canvas, this
 generate a circle and square together to use with the touch buttons
@@ -135,13 +135,13 @@ the width and h is the height, r corresponds to the radius of the circumference.
 
 >Mouse.Position(CursorVisibiliti,color,W,H,R);
 ```
--Mouse.PosX
--Mouse.PosY
--Mouse.W
--Mouse.H
+- Mouse.PosX
+- Mouse.PosY
+- Mouse.W
+- Mouse.H
 ```
 
-###### Keyboard Events
+## Keyboard Events
 
 Allows you to implement keyboard events on the canvas
 Add on the Game loop.
@@ -153,10 +153,53 @@ if(Keyboard[/*Tecla a utilizar*/] == true){
 		
 		//Evento
 		}
-```		  
-	
+```
+
+## Touch Button
+
+Create a button on the canvas for use in mobile games or for other interactions by positioning the cursor on the true returned button when this happens, this function allows you to create two types of buttons one of circular shape and another square or rectangular.
 
 
+## Circular Button
+
+>TactilButton.Circle(X,Y,R,Color);
+
+###### Example
+
+```
+if(TactilButton.state==true){ //Action }
+```
+
+## Rectangular Button
+
+> TactilButton.Square(X,Y,W,H,Color);
+
+###### Example
+
+```
+if(TactilButton.state==true){ //Action }
+```
+
+## Gravity
+
+>Gravity.init(bool,valor);
+
+If the bool parameter is set to true, gravity will affect the object.
+while the value parameter indicates the force of gravity.
+When the bool parameter is set to `` false``, the effect of gravity stops.
+
+## Time
+
+###### Delay
+
+This function allows you to control the activation time of a specific action.
+
+###### initial
+
+>Time.delay(Capture,stateconter);
+
+Capture: indicates the delay time stateconter: It's a bool recive true for activation
+and false for disconnection
 
 
 
