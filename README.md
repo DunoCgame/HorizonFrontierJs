@@ -328,7 +328,7 @@ var Collision=BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1
 
 if(!Collision){
 	// if(!BoxCollision.state){
-		Rabitty-=Limit; 
+		/*Action*/
 		}
 
 ````
