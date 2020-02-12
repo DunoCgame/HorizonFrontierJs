@@ -10,9 +10,10 @@ Library for the development of Video Games using Javascript technology.
 
 >const Game = require('horizonfrontierjs');
 
+```
 After requesting the file, id = "body" must be assigned to the 'BODY'
 tag so that the library automatically generates the canvas inside it.
-
+```
 
 ###### Initial Window
 
@@ -317,6 +318,18 @@ if(BoxCollision.state==true){
 	
 }
 else{ state_Collision=false;}
+
+````
+
+###### Example
+
+````
+var Collision=BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
+
+if(!Collision){
+	// if(!BoxCollision.state){
+		Rabitty-=Limit; 
+		}
 
 ````
 
