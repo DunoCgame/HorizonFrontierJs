@@ -10,6 +10,10 @@ Library for the development of Video Games using Javascript technology.
 
 >const Game = require('horizonfrontierjs');
 
+After requesting the file, id = "body" must be assigned to the 'BODY'
+tag so that the library automatically generates the canvas inside it.
+
+
 ###### Initial Window
 
 >Screen.Init(Width,heigth);

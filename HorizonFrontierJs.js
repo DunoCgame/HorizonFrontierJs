@@ -419,10 +419,12 @@ var BoxCollision = {
 		if ( ((PosY1+H1) > PosY2)  &&  (PosY1 < (PosY2+H2)) ) {
 			
 			BoxCollision.state=true;
+			return true;
 		}
 	}
 	else{
 		BoxCollision.state=false;
+		return false;
 	}
 }
 }
@@ -502,6 +504,7 @@ if ( ((this.Y+this.H) > Mouse.PosY)  &&  (this.Y < (Mouse.PosY+Mouse.H)) ) {
 	}
 	
 }
+
 	}
 
 /*botones tactil*/
