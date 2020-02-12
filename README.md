@@ -106,7 +106,7 @@ Debut(Numerico,0,0); ó Debut('Numerico'+':'+Numerico,0,0);
 
 Transitions are useful to oculate the load from stage or to pass from one scene to another an example It is in the RPG where the scene is changed when starting a fight.
 
->transition.A(color);
+>Transition.A(color);
 
 To change the type of transition, change the letter to another of the alphabet,
 at the moment it is available until 'F'; "A, B, C, D, E, F".
@@ -157,7 +157,7 @@ if(Keyboard[/*Tecla a utilizar*/] == true){
 
 Create a button on the canvas for use in mobile games or for other interactions by positioning the cursor on the true returned button when this happens, this function allows you to create two types of buttons one of circular shape and another square or rectangular.
 
-## Circular Button
+**Circular Button**
 
 >TactilButton.Circle(X,Y,R,Color);
 
@@ -167,7 +167,7 @@ Create a button on the canvas for use in mobile games or for other interactions 
 if(TactilButton.state==true){ //Action }
 ```
 
-## Rectangular Button
+**Rectangular Button**
 
 > TactilButton.Square(X,Y,W,H,Color);
 
@@ -187,13 +187,13 @@ When the bool parameter is set to `` false``, the effect of gravity stops.
 
 ## Time
 
-###### Delay
+**Delay**
 
 This function allows you to control the activation time of a specific action.
 
 ###### Initial
 
->Time.delay(Capture,stateconter);
+>Time.Delay(Capture,stateconter);
 
 ````
 Capture: indicates the delay time.
@@ -217,7 +217,7 @@ Time.delay(30,true);
 	}
 ```
 
-## Interval
+**Interval**
 
 ###### Initial
 
@@ -228,7 +228,7 @@ The counter starts at 0 and counts until you reach the end value and capture the
 ###### Example
 
 ```
-Time.interval(20,40,true);
+Time.Interval(20,40,true);
 
 Capture: It is the action value of the function.
 end: Indicates the final value of the counter.
@@ -239,17 +239,17 @@ stateconter: It is a bool recive true for activation and false for disconnection
 
 This function allows you to add sound effects to the game.
 
-###### Initialization
+**Initialization**
 
 >Sound.init(url);
 
 It should be added outside the loop to avoid calling the audio file multiple times.
 
-###### Initial Reproduction
+**Initial Reproduction**
 
 >Sound.play();
 
-###### Pausar Reproduccion
+**Pausar Reproduccion**
 
 >Sound.stop();
 
@@ -261,7 +261,7 @@ Sound.init("./Sonido.mp3");
 
 ## Position Detection
 
-###### Distancepointos
+**Distancepointos**
 
 Detect the distance between the corresponding objects
 to the parameters assigned to the function.
@@ -277,7 +277,7 @@ if(Distancepoints(PosX-Object1,PosY-Object1,PosX-Object2, PosY-Object2)<5){
 }
 ````
 
-###### Angletwopoints
+**Angletwopoints**
 
 Detects the angle between two objects on the canvas.
 
@@ -294,7 +294,7 @@ if(Angletwopoints(PosX-Object1, PosY-Object1,PosX-Object2, PosY-Object2)==0){
 ````
 ## Collision System
 
-###### Box Collision
+**Box Collision**
  
 It allows the interaction between two objects created an interaction layer corresponding to a box
 
@@ -316,7 +316,7 @@ else{ state_Collision=false;}
 
 ````
 
-###### Circle Collision
+**Circle Collision**
 
 It allows to detect collisions through a circular layer that surrounds the object.
 
