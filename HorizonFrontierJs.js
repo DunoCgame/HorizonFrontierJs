@@ -1,9 +1,15 @@
 /*Screen*/ /*Screen*/ /*Screen*/
 
+
 let Screen={
+			W:0,
+			H:0,
 			Canvas:document.createElement("canvas"),
 			 
 			Init:function(width,height){
+				
+
+				
 				this.Canvas.width=width;
 				this.Canvas.height=height;
 				this.Canvas.id="canvas";
@@ -11,11 +17,27 @@ let Screen={
 				document.body.insertBefore(this.Canvas, document.body.childNodes[0]);
 				document.body.style.margin="0px";
 				document.body.style.padding="0px";
+				
 
+			var s = getComputedStyle(this.Canvas);
+			var w = s.width;
+			var h = s.height;
+					
+			Screen.W = this.Canvas.width = w.split("px")[0];
+			Screen.H = this.Canvas.height = h.split("px")[0];
+			 
+			
 				
 				
 			}
 }
+
+
+
+
+
+
+
 /*Screen*/ /*Screen*/ /*Screen*/
 /***************************************************/
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
@@ -172,7 +194,7 @@ ctx=Screen.context;
 
 	ctx.save();
 	ctx.fillStyle="black";
-	ctx.font = "25px Calibre";
+	ctx.font = "25px Calibri";
 	ctx.fillText(this.text,this.X,this.Y);
 	ctx.restore();
 	
@@ -322,7 +344,6 @@ ctx.restore();
 /*****************************************************/			
 		
 /*Posicion de mause*/ /*Posicion de mause*/ /*Posicion de mause*/
-
 var Mouse={
 	PosX:0,
 	PosY:0,
@@ -330,13 +351,24 @@ var Mouse={
 	H:0,
 Position:function (CursorVisibiliti,color,W,H,R){
 	var mousePos=0;
+	
+	  
 	function getMousePos(canvas, evt) {
-	return {
-				x: evt.clientX,
-				y: evt.clientY};}
+		var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+	  
+   
+		// ctx=Screen.context;
+		// canvas=Screen.Canvas;	
 		
-		ctx=Screen.context;
-		canvas=Screen.Canvas;	
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+		
+				
 				
 	canvas.addEventListener('mousemove', function(evt) {
 				var mousePos = getMousePos(canvas, evt);
@@ -344,7 +376,9 @@ Position:function (CursorVisibiliti,color,W,H,R){
 				Mouse.PosY=mousePos.y;
 		}, false);
 
+		
 		if(CursorVisibiliti==true){
+				
 				ctx.save();
 				ctx.fillStyle=color;
 				ctx.fillRect(Mouse.PosX,Mouse.PosY,W,H);
@@ -356,6 +390,7 @@ Position:function (CursorVisibiliti,color,W,H,R){
 				ctx.arc(Mouse.PosX,Mouse.PosY,R,0,Math.PI*2,true);
 				ctx.closePath;
 				ctx.fill();
+		
 		}
 		
 		Mouse.W=W;
@@ -363,7 +398,7 @@ Position:function (CursorVisibiliti,color,W,H,R){
 		
 		ctx.save();
 		ctx.fillStyle="white";
-		ctx.font = "15px Calibre";
+		ctx.font = "15px Calibri";
 		ctx.fillText("X"+":"+Mouse.PosX+"|"+"Y"+":"+Mouse.PosY+"",Mouse.PosX,Mouse.PosY);
 		ctx.restore();
 			

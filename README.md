@@ -88,7 +88,7 @@ As the name implies, enter text into the scene.
 
 ###### Example
 
->Text('HelloWord',20px,"Black",10,10);
+>Text('HelloWord','20px Calibri','Black',10,10);
 
 ## Debut
 
@@ -365,5 +365,3 @@ The information presented may be subject to modifications or changes.
 # License
 
 [MIT](https://github.com/DunoCgame/HorizonFrontierJs/blob/master/LICENSE).
-
-
