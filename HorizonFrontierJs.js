@@ -1,35 +1,29 @@
 /*Screen*/ /*Screen*/ /*Screen*/
 
-
 let Screen={
 			W:0,
 			H:0,
 			Canvas:document.createElement("canvas"),
 			 
-			Init:function(width,height){
-				
-
-				
-				this.Canvas.width=width;
-				this.Canvas.height=height;
+			
+			Init:function(){
+			
 				this.Canvas.id="canvas";
 				this.context=this.Canvas.getContext("2d");
 				document.body.insertBefore(this.Canvas, document.body.childNodes[0]);
 				document.body.style.margin="0px";
 				document.body.style.padding="0px";
-				
-
-			var s = getComputedStyle(this.Canvas);
-			var w = s.width;
-			var h = s.height;
-					
-			Screen.W = this.Canvas.width = w.split("px")[0];
-			Screen.H = this.Canvas.height = h.split("px")[0];
-			 
-			
-				
-				
+				var s = getComputedStyle(this.Canvas);
+				var w = s.width;
+				var h = s.height;
+						
+				Screen.W = this.Canvas.width = w.split("px")[0];
+				Screen.H = this.Canvas.height = h.split("px")[0];
+				 
 			}
+				
+				
+			
 }
 
 

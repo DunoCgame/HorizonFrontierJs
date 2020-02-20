@@ -17,10 +17,17 @@ tag so that the library automatically generates the canvas inside it.
 
 ###### Initial Window
 
->Screen.Init(Width,heigth);
+>Screen.Init();
 
 It is recommended to initialize the window outside the game cycle to avoid multiple canvas creation
 to get the full size of the browser window add to the parameters.
+
+```
+Modify the way the window starts, it is no longer necessary to pass an argument as it was done in previous versions, now it automatically 
+adapts to the size of the browser.
+
+Screen.Init(width,height); => Screen.Init();
+```
 
 ## Create Loop Game
 
