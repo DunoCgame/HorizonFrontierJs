@@ -123,7 +123,7 @@ Transitions are useful to oculate the load from stage or to pass from one scene 
 To change the type of transition, change the letter to another of the alphabet,
 at the moment it is available until 'F'; "A, B, C, D, E, F".
 
->transition.state;
+>Transition.state;
 
 With 'transition.state' you can get the state of the transition this returns
 false at start and true at end.
@@ -131,9 +131,9 @@ false at start and true at end.
 ###### Example
 
 ```
-transition.A("blue");
+Transition.A("blue");
 
-Debut("state"+":"+transition.state,10,10);
+Debut("state"+":"+Transition.state,10,10);
 
 ```
 ## Mouse
@@ -233,7 +233,7 @@ Time.delay(30,true);
 
 ###### Initial
 
->interval(Capture,end,stateconter);
+>Interval(Capture,end,stateconter);
 
 The counter starts at 0 and counts until you reach the end value and capture the action value.
 
