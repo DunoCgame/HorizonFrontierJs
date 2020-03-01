@@ -268,7 +268,7 @@ It should be added outside the loop to avoid calling the audio file multiple tim
 ###### Example
 
 ````
-var SOUND = new sound('Sound/Intro.wav');
+var SOUND = new Sound('Sound/Intro.wav');
 ````
 
 ## Position Detection
