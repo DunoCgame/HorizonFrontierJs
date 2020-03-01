@@ -253,7 +253,7 @@ This function allows you to add sound effects to the game.
 
 **Initialization**
 
->Sound(url);
+>var SOUND = new Sound('url');
 
 It should be added outside the loop to avoid calling the audio file multiple times.
 
@@ -268,7 +268,13 @@ It should be added outside the loop to avoid calling the audio file multiple tim
 ###### Example
 
 ````
-var SOUND = new Sound('Sound/Intro.wav');
+var Init=true;
+if(Init==true){
+	Sound.Play();
+}
+else{
+	Sound.Stop();
+}
 ````
 
 ## Position Detection
@@ -361,9 +367,12 @@ if(CircleCollision.state==true){
 	state_Collision=true;
 	
 }
-else{ state_Collision=false;}
+else{state_Collision=false;}
 
 ````
+# Example
+
+[Examples](https://github.com/DunoCgame/HorizonFrontierJs/blob/master/LICENSE).
 
 # Nota
 

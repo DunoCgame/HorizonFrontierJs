@@ -643,15 +643,13 @@ function Sound(src){
 	this.Sound.setAttribute("preload", "auto");
 	this.Sound.style.display = "none";	
 	document.body.appendChild(this.Sound);
-this.play = function(){
-    this.Sound.play();
-  }
-this.stop = function(){
 	
-    this.Sound.pause();
-	
-	
-  }
+	this.play = function(){
+			this.Sound.Play();
+	  }
+	this.stop = function(){
+			this.Sound.Pause();	
+	  }
  
 		
 	
