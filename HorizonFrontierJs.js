@@ -1,5 +1,7 @@
 /*Screen*/ /*Screen*/ /*Screen*/
 
+
+
 let Screen={
 			W:0,
 			H:0,
@@ -308,16 +310,22 @@ this.state=true;
 },
 F:function(color){
 	
+	
 	this.color=color;
 	
 	ctx=Screen.context;
 	W=Screen.Canvas.width;
 	H=Screen.Canvas.height;
-
-	if(this.Decen >=0.1 ){
-		this.Decen -= 0.01;
-	}
 	
+	if(this.Decen >0.07 ){
+		
+		this.Decen -= 0.1;
+		
+	}if(Math.round(this.Decen) == 0 ){
+		this.state=true;
+		
+	}
+
 ctx.save();
 ctx.globalAlpha = this.Decen;
 ctx.fillStyle = this.color;
@@ -627,20 +635,16 @@ let Gravity={
 /*Gravity*/ /*Gravity*/
 /************************/
 /**Sound**/
-let Sound={
-	sound:document.createElement("audio"),
-init:function (url){
-	this.sound.src=url;
+	
+function sound(src){
+	
+	this.sound = document.createElement("audio");
+	this.sound.src = src;
 	this.sound.setAttribute("preload", "auto");
-	this.sound.style.display = "none";
-	
+	this.sound.style.display = "none";	
 	document.body.appendChild(this.sound);
-	
-
 this.play = function(){
     this.sound.play();
-	
-	
   }
 this.stop = function(){
 	
@@ -651,7 +655,6 @@ this.stop = function(){
  
 		
 	
-}
 }
 /**Sound**/
 

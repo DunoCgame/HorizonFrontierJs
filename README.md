@@ -253,7 +253,7 @@ This function allows you to add sound effects to the game.
 
 **Initialization**
 
->Sound.init(url);
+>Sound(url);
 
 It should be added outside the loop to avoid calling the audio file multiple times.
 
@@ -268,7 +268,7 @@ It should be added outside the loop to avoid calling the audio file multiple tim
 ###### Example
 
 ````
-Sound.init("./Sonido.mp3");
+var SOUND = new sound('Sound/Intro.wav');
 ````
 
 ## Position Detection
