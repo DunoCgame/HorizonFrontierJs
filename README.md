@@ -270,10 +270,10 @@ It should be added outside the loop to avoid calling the audio file multiple tim
 ````
 var Init=true;
 if(Init==true){
-	Sound.Play();
+	Sound.play();
 }
 else{
-	Sound.Stop();
+	Sound.stop();
 }
 ````
 
@@ -352,7 +352,6 @@ It allows to detect collisions through a circular layer that surrounds the objec
 
 >CircleCollision.init(PosX-Object1, PosY-Object1, PosX-Object2, PosY-Object2, limit);
 
-
 ````
 Limit:
 
@@ -372,7 +371,9 @@ else{state_Collision=false;}
 ````
 # Example
 
-[Examples](https://github.com/DunoCgame/HorizonFrontierJs/blob/master/LICENSE).
+Examples of HFJs, the examples were tested in the last version of electronJs.
+
+[Examples](https://github.com/DunoCgame/Example-HFJs).
 
 # Nota
 

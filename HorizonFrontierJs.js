@@ -1,7 +1,4 @@
 /*Screen*/ /*Screen*/ /*Screen*/
-
-
-
 let Screen={
 			W:0,
 			H:0,
@@ -27,20 +24,11 @@ let Screen={
 				
 			
 }
-
-
-
-
-
-
-
 /*Screen*/ /*Screen*/ /*Screen*/
 /***************************************************/
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
 let Game_loop={
-	
-		
-		
+			
 start:function(funcion){
 		
 		requestAnimationFrame(funcion); 
@@ -114,10 +102,6 @@ function Images(X,Y,W,H,Url){
 		Urlimg.src = this.Url;
 		ctx.drawImage(Urlimg, this.X, this.Y, this.W, this.H);
 		ctx.restore();
-		
-		
-
-
 
 }
 
@@ -148,11 +132,6 @@ var Url = new Image();
 Url.src = this.Url;
 ctx.drawImage(Url, this.x, this.y, this.w, this.h, this.X, this.Y, this.W, this.H );
 ctx.restore();
-
-
-
-
-
 
 }
 /*imagenes*/
@@ -273,7 +252,6 @@ D:function(color){
 	H=Screen.Canvas.height;
 	
 	if(this.Acen!=-W-10){this.Acen-=10;
-
 
 				}
 				if(this.Acen==-W-10){this.Acen+=10; 		
@@ -683,5 +661,3 @@ module.exports.Sound=Sound;
 
 
 /*******Esportar Modulos*/
-
-
