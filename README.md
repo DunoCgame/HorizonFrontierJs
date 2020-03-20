@@ -2,7 +2,7 @@
 
 Library for the development of Video Games using Javascript technology.
 
-![Screenshot](screenshot.png) 
+![](https://raw.githubusercontent.com/DunoCgame/HorizonFrontierJs/master/Logo_HFjs.png) 
 
 ## Installation NPM
 
