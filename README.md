@@ -24,11 +24,21 @@ tag so that the library automatically generates the canvas inside it.
 It is recommended to initialize the window outside the game cycle to avoid multiple canvas creation
 to get the full size of the browser window add to the parameters.
 
+
 ```
 Modify the way the window starts, it is no longer necessary to pass an argument as it was done in previous versions, now it automatically 
 adapts to the size of the browser.
 
 Screen.Init(width,height); => Screen.Init();
+```
+
+```
+Calling Width of Screen and Height Screen
+
+Screen.Canvas.width;
+
+Screen.Canvas.height;
+
 ```
 
 ## Create Loop Game
@@ -38,7 +48,7 @@ Screen.Init(width,height); => Screen.Init();
 ###### Example:
 
 ```
-(function LoopGame () {
+(function LoopGame(){
 
       / *Game Features* /
       
@@ -295,6 +305,8 @@ if(Distancepoints(PosX-Object1,PosY-Object1,PosX-Object2, PosY-Object2)<5){
 
 /*Funciones*/
 }
+
+5 is the limit
 ````
 
 **Angletwopoints**
@@ -320,31 +332,16 @@ It allows the interaction between two objects created an interaction layer corre
 
 >BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
 
-###### Example
-
-````
-BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
-
-var state_Collision=false;
-
-if(BoxCollision.state==true){
-	
-	state_Collision=true;
-	
-}
-else{ state_Collision=false;}
-
-````
 
 ###### Example
 
 ````
 var Collision=BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
-
-if(!Collision){
-	// if(!BoxCollision.state){
-		/*Action*/
-		}
+if(!Collision){			 			}
+			 else{
+				/*Action*/
+				
+			 }
 
 ````
 
@@ -363,14 +360,27 @@ Determine the minimum distance between the two defined objects
 ###### Example
 
 ````
-if(CircleCollision.state==true){
-	
-	state_Collision=true;
-	
-}
-else{state_Collision=false;}
+var Collision = CircleCollision.init(PosX-Object1, PosY-Object1, PosX-Object2, PosY-Object2, limit);
+if(!CircleCollision){ 	 	 }
+	else{
+		/*Action*/
+	}
+````
+
+## Camara
+
+Para implementar una camara en tu juego existen dos opciones estatica o dinamica.
+
+>camara estatica
+````
+Game.Camera.fixed(E,A);
+````
+>camara dinamica
 
 ````
+Game.Camera.Dynamic(E,A,X,Y,mW,mH );
+````
+
 # Example
 
 Examples of HFJs, the examples were tested in the last version of electronJs.

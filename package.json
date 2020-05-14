@@ -1,7 +1,7 @@
 {
   "name": "horizonfrontierjs",
   "description": "Library for the development of Video Games using Javascript technology",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "HorizonFrontierJs.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,11 @@
     "type": "git",
     "url": "https://github.com/DunoCgame/HorizonFrontierJs.git"
   },
-  "keywords": [],
+  "keywords": [
+	"Electron",
+	"ApacheCordova",
+	"Web",
+  ],
   "author": "Luis<'luisdunocastellano@gmail.com'>",
   "license": "MIT",
   "bugs": {

@@ -1,14 +1,14 @@
 /*Screen*/ /*Screen*/ /*Screen*/
-let Screen={
+
+let Screen = {
 			W:0,
-			H:0,
+			H:0,	
 			Canvas:document.createElement("canvas"),
-			 
-			
-			Init:function(){
+			 		
+		init:function(){
 			
 				this.Canvas.id="canvas";
-				this.context=this.Canvas.getContext("2d");
+				this.context = this.Canvas.getContext("2d");
 				document.body.insertBefore(this.Canvas, document.body.childNodes[0]);
 				document.body.style.margin="0px";
 				document.body.style.padding="0px";
@@ -18,10 +18,16 @@ let Screen={
 						
 				Screen.W = this.Canvas.width = w.split("px")[0];
 				Screen.H = this.Canvas.height = h.split("px")[0];
-				 
-			}
+			
+			},
+		ctx:function(){
+			
+			    this.Canvas.id="canvas";
+				this.context = this.Canvas.getContext("2d");
 				
-				
+				return this.context;
+		}
+			
 			
 }
 /*Screen*/ /*Screen*/ /*Screen*/
@@ -33,7 +39,7 @@ start:function(funcion){
 		
 		requestAnimationFrame(funcion); 
 
-	ctx=Screen.context;
+		ctx=Screen.context;
 
 		Screen.Canvas.width==Screen.Canvas.width;
 		Screen.Canvas.height==Screen.Canvas.height;
@@ -63,6 +69,8 @@ function Square(X,Y,W,H,rote,Color){
 			
 			ctx.fillRect(this.X, this.Y, this.W, this.H);
 			ctx.restore();
+			
+			
 }
 /*Circle*/
 function Circle(X, Y, R, rote, Color){
@@ -179,50 +187,60 @@ ctx=Screen.context;
 /*****************************************************/
 //*Transisiones*// //*Transisiones*//////
 var Opacidad = 1;
+var T=0;
 let Transition={
 			Decen:1,
 			Acen:0,
 			state:false,
 A:function(color){
+
 			
-					this.color=color;
+				this.color=color;
 					ctx=Screen.context;
 					W=Screen.Canvas.width;
 					H=Screen.Canvas.height;
-					
-				if(this.Acen<H){this.Acen+=10;				}
+			
+	
+				if(this.Acen<H && this.state==false){ this.Acen+=10;}
 				
-					if(this.Acen==H){this.Acen+=10; 		
-					this.state=true;
-					}
+				if(this.Acen>=H){
+							this.state=true;		
+							this.Decen=1;
+							this.Acen=0;
+
+				}
+
 							ctx.save();
 							ctx.fillStyle = this.color;
 							ctx.fillRect(0,0, W, this.Acen);
 							ctx.restore();
+							
+							
+							
 				},
 B:function(color){
-							
 				this.color=color;
 				ctx=Screen.context;
 				W=Screen.Canvas.width;
 				H=Screen.Canvas.height;
-				
-				if(this.Acen!=-H){this.Acen-=10;
 
+		if(0+H+this.Acen>0){
+		this.Acen-=10;
+		 }else{
 
-				}
-				if(this.Acen==-H){this.Acen+=10; 		
-					
-					this.state=true;
-					}
+			 this.state=true;
+		 }
+
 						ctx.save();
 						ctx.fillStyle = this.color;
-						ctx.fillRect(0,H, W, this.Acen);
+						ctx.fillRect(0,0+H+this.Acen, W, H);
 						ctx.restore();
+						
 						
 						
 					},				
 C:function(color){
+			
 		
 	this.color=color;
 	
@@ -232,7 +250,7 @@ C:function(color){
 	
 	if(this.Acen<W){this.Acen+=10;	}
 				
-					if(this.Acen==W){this.Acen+=10; 		
+					if(this.Acen>W){
 					
 					this.state=true;
 					}
@@ -251,17 +269,21 @@ D:function(color){
 	W=Screen.Canvas.width;
 	H=Screen.Canvas.height;
 	
-	if(this.Acen!=-W-10){this.Acen-=10;
+	if(W+this.Acen>=0){
+		
+		this.Acen-=10;
 
 				}
-				if(this.Acen==-W-10){this.Acen+=10; 		
+				else{
+					// // this.Acen+=10; 		
 					
 					this.state=true;
 					}
 					
 					ctx.save();
 			ctx.fillStyle = this.color;
-			ctx.fillRect(W,0, this.Acen, H);
+			// ctx.fillRect(W,0, this.Acen, H);
+			ctx.fillRect(W+this.Acen,0, W+20, H);
 			ctx.restore();
 },
 
@@ -276,8 +298,9 @@ E:function(color){
 	if(Math.round(this.Acen)!=2){
 	this.Acen=this.Acen+=0.02;
 	
-	}	if(Math.round(this.Acen)==2){
-this.state=true;
+	}
+	if(Math.round(this.Acen)==2){
+			this.state=true;
 	
 	}	
 			ctx.save();
@@ -287,8 +310,7 @@ this.state=true;
 			ctx.restore();
 },
 F:function(color){
-	
-	
+		
 	this.color=color;
 	
 	ctx=Screen.context;
@@ -312,7 +334,13 @@ ctx.restore();
 			
 			
 			},
-
+resert:function(){ 
+	if(this.state==true){
+				this.state=false;		
+				this.Decen=1;
+				this.Acen=0;
+	} 
+}
 		
 		}//cierre
 
@@ -331,7 +359,6 @@ var Mouse={
 	H:0,
 Position:function (CursorVisibiliti,color,W,H,R){
 	var mousePos=0;
-	
 	  
 	function getMousePos(canvas, evt) {
 		var rect = canvas.getBoundingClientRect();
@@ -428,37 +455,34 @@ function Angletwopoints(PosX1, PosY1,PosX2, PosY2){
 // circleCollision
 //BoxCollision
 var BoxCollision = {
-	state:false,
-	init:function(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
-	if ( ((PosX1+W1) > PosX2)  &&  (PosX1 < (PosX2+W2)) ) {          
-		if ( ((PosY1+H1) > PosY2)  &&  (PosY1 < (PosY2+H2)) ) {
-			
-			BoxCollision.state=true;
-			return true;
-		}
+	
+		init:function(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
+			if ( ((PosX1+W1) > PosX2)  &&  (PosX1 < (PosX2+W2)) ) {          
+				if ( ((PosY1+H1) > PosY2)  &&  (PosY1 < (PosY2+H2)) ) {
+					
+					return true;
+				}
+			}
+			else{
+				return false;
+			}
 	}
-	else{
-		BoxCollision.state=false;
-		return false;
-	}
-}
 }
 
 var CircleCollision={
-	state:false,
 	init:function(PosX1, PosY1, PosX2, PosY2, limit){
 
-	var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
-	if(Distancia_entre_dos_Puntos<=limit){
-		
-		CircleCollision.state=true;
+		var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
+		if(Distancia_entre_dos_Puntos<=limit){
+			
+			return true;
+			
+		}
+		else{
+			return false;
+		}
 		
 	}
-	else{
-		CircleCollision.state=false;
-	}
-	
-}
 }
 
 
@@ -473,7 +497,7 @@ var CircleCollision={
 let TactilButton = {
 	D:0,
 	state:false,
-Circle:function(X,Y,R,Color){
+circle:function(X,Y,R,Color){
 	this.X=X;
 	this.Y=Y;
 	this.R=R;
@@ -496,8 +520,8 @@ Circle:function(X,Y,R,Color){
 			TactilButton.state=false;
 		}		
 },
-Square:function(X,Y,W,H,Color){
 
+Square:function(X,Y,W,H,Color){
 
 	this.X=X;
 	this.Y=Y;
@@ -592,9 +616,6 @@ if(stateconter==true){
 
 let Gravity={
 		init:function(state,G){
-			
-		
-			
 			if(state==true){
 				
 				return G;
@@ -612,29 +633,91 @@ let Gravity={
 
 /*Gravity*/ /*Gravity*/
 /************************/
-/**Sound**/
+/**Sound**//**Sound**//**Sound**//**Sound**/
 	
 function Sound(src){
-	
-	this.Sound = document.createElement("audio");
-	this.Sound.src = src;
-	this.Sound.setAttribute("preload", "auto");
-	this.Sound.style.display = "none";	
-	document.body.appendChild(this.Sound);
-	
-	this.play = function(){
-			this.Sound.Play();
-	  }
-	this.stop = function(){
-			this.Sound.Pause();	
-	  }
- 
-		
-	
+			this.Sound = document.createElement("audio");
+			this.Sound.src = src;
+			this.Sound.setAttribute("preload","auto");
+			this.Sound.setAttribute("controls", "none");
+			this.Sound.style.display = "none";		 
+			document.body.appendChild(this.Sound);
+			this.play = function(){
+					this.Sound.play();
+			  }	  
+			this.stop = function(){
+					this.Sound.pause();	
+			  }
+			  
+			
 }
-/**Sound**/
 
 
+/**Sound**//**Sound**//**Sound**//**Sound**/
+/**Camera**/ /**Camera**/ /**Camera**/ /**Camera**/
+
+let Camera = {
+	
+fixed:function(E,A){		
+		this.E=E;
+		this.A=A;
+		if(this.S==null){ 			this.E=1; 		}
+		if(this.A==null){ 			this.A=0; 		}
+		
+		ctx=Screen.context;
+		
+		ctx.setTransform(this.E,this.A,this.A,this.E,0,0);
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		},
+Dynamic:function(E,A,X,Y,mW,mH ){
+
+			this.E = E;
+			this.A = A;
+			
+			this.x = X - Screen.Canvas.width/2+20;
+			this.y = Y - Screen.Canvas.height/2+20;
+
+			this.mapW = mW;
+			this.mapH = mH;	
+
+			ctx=Screen.context;
+					
+			ctx.setTransform(this.E,this.A,this.A,this.E,0,0);
+			ctx.clearRect(0,0,canvas.width, canvas.height);
+			
+		   if (this.x < 0) {
+                this.x = 0;
+					
+            } 
+			else if (this.x > this.mapW - Screen.Canvas.width) {
+					 this.x = this.mapW - Screen.Canvas.width;
+					 
+					
+            }
+            if (this.y < 0) {
+                this.y = 0;
+					
+            }
+			else if (this.y > this.mapH - Screen.Canvas.height) {
+                     this.y = this.mapH - Screen.Canvas.height;
+					
+            }
+			
+ctx.translate(-this.x,-this.y);
+
+
+	}
+
+
+}
+
+
+
+
+
+
+/**Camera**/ /**Camera**/ /**Camera**/ /**Camera**/ 
 /*******Esportar Modulos*/
 
 
@@ -656,6 +739,8 @@ module.exports.TactilButton=TactilButton;
 module.exports.Time=Time;
 module.exports.Gravity=Gravity;
 module.exports.Sound=Sound;
+module.exports.Camera = Camera;
+
 
 
 
