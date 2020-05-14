@@ -14,6 +14,8 @@
 	"Electron",
 	"ApacheCordova",
 	"Web",
+	"node",
+	"Javascript"
   ],
   "author": "Luis<'luisdunocastellano@gmail.com'>",
   "license": "MIT",
