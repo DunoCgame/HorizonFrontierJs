@@ -359,24 +359,17 @@ var Mouse={
 	H:0,
 Position:function (CursorVisibiliti,color,W,H,R){
 	var mousePos=0;
-	  
-	function getMousePos(canvas, evt) {
-		var rect = canvas.getBoundingClientRect();
-        return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-        };
-      }
-	  
-   
-		// ctx=Screen.context;
-		// canvas=Screen.Canvas;	
-		
+
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-		
-				
-				
+
+
+canvas.onmousemove = function (e) {
+   Mouse.PosX= e.pageX - this.offsetLeft;
+   Mouse.PosY = e.pageY - this.offsetTop;
+
+};
+			
 	canvas.addEventListener('mousemove', function(evt) {
 				var mousePos = getMousePos(canvas, evt);
 				Mouse.PosX=mousePos.x;
@@ -397,7 +390,6 @@ var ctx = canvas.getContext('2d');
 				ctx.arc(Mouse.PosX,Mouse.PosY,R,0,Math.PI*2,true);
 				ctx.closePath;
 				ctx.fill();
-		
 		}
 		
 		Mouse.W=W;
@@ -658,32 +650,33 @@ function Sound(src){
 
 let Camera = {
 	
-fixed:function(E,A){		
-		this.E=E;
+fixed:function(S,A){		
+		this.S=S;
 		this.A=A;
 		if(this.S==null){ 			this.E=1; 		}
 		if(this.A==null){ 			this.A=0; 		}
 		
 		ctx=Screen.context;
 		
-		ctx.setTransform(this.E,this.A,this.A,this.E,0,0);
+		ctx.setTransform(this.S,this.A,this.A,this.S,0,0);
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		},
-Dynamic:function(E,A,X,Y,mW,mH ){
+Dynamic:function(S,A,X,Y,W,H,mW,mH){
 
-			this.E = E;
+			this.S = S;
 			this.A = A;
 			
-			this.x = X - Screen.Canvas.width/2+20;
-			this.y = Y - Screen.Canvas.height/2+20;
+		this.x = X+W/2 - canvas.width/2; 
+		this.y = Y+H/2 - canvas.height/2;	
+
 
 			this.mapW = mW;
 			this.mapH = mH;	
 
 			ctx=Screen.context;
 					
-			ctx.setTransform(this.E,this.A,this.A,this.E,0,0);
+			ctx.setTransform(this.S,this.A,this.A,this.E,0,0);
 			ctx.clearRect(0,0,canvas.width, canvas.height);
 			
 		   if (this.x < 0) {

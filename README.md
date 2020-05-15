@@ -140,6 +140,10 @@ at the moment it is available until 'F'; "A, B, C, D, E, F".
 With 'transition.state' you can get the state of the transition this returns
 false at start and true at end.
 
+>Transition.resert();
+
+with 'transition.resert'you can reset the values ​​of a transition.
+
 ###### Example
 
 ```
@@ -369,17 +373,23 @@ if(!CircleCollision){ 	 	 }
 
 ## Camara
 
-Para implementar una camara en tu juego existen dos opciones estatica o dinamica.
+To implement a 'camera' in your game there are two static or dynamic options.
 
 >camara estatica
+
 ````
-Game.Camera.fixed(E,A);
+Camera.fixed(S,A);
 ````
 >camara dinamica
 
 ````
-Game.Camera.Dynamic(E,A,X,Y,mW,mH );
+Camera.Dynamic(S,A,X,Y,W,H,mW,mH );
 ````
+
+S is the scale of the camera.
+A is the angle.
+X, Y, W, H, work only in the 'dynamic' camera and are the width and height as well as their position in X and Y of the character to follow.
+mH and mW are the width and height of the map.
 
 # Example
 
