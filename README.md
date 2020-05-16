@@ -24,13 +24,13 @@ tag so that the library automatically generates the canvas inside it.
 It is recommended to initialize the window outside the game cycle to avoid multiple canvas creation
 to get the full size of the browser window add to the parameters.
 
+
 ```
 Modify the way the window starts, it is no longer necessary to pass an argument as it was done in previous versions, now it automatically 
 adapts to the size of the browser.
 
 Screen.Init(width,height); => Screen.Init();
 ```
-
 ```
 Calling Width of Screen and Height Screen
 
@@ -384,12 +384,12 @@ if(!CircleCollision){ 	 	 }
 
 To implement a 'camera' in your game there are two static or dynamic options.
 
->camara estatica
+>camera static
 
 ````
 Camera.fixed(S,A);
 ````
->camara dinamica
+>camera dynamic
 
 ````
 Camera.Dynamic(S,A,X,Y,W,H,mW,mH );
