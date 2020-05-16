@@ -285,6 +285,7 @@ It should be added outside the loop to avoid calling the audio file multiple tim
 
 ````
 var Init=true;
+
 if(Init==true){
 	Sound.play();
 }
@@ -300,7 +301,7 @@ else{
 Detect the distance between the corresponding objects
 to the parameters assigned to the function.
 
->Distancepoints(PosX-Object1,PosY-Object1,PosX-Object2, PosY-Object2);
+>Distancepoints(PosX-Object1, PosY-Object1, PosX-Object2, PosY-Object2);
 
 ###### Example
 
@@ -336,16 +337,42 @@ It allows the interaction between two objects created an interaction layer corre
 
 >BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
 
+<<<<<<< HEAD
+=======
+###### Example-1
 
-###### Example
+````
+BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
+
+var state_Collision=false;
+
+if(BoxCollision.state==true){
+	
+	state_Collision=true;
+	
+}
+else{ state_Collision=false;}
+
+````
+>>>>>>> c58576f527e90451e03781527126d215d428b834
+
+###### Example-2
 
 ````
 var Collision=BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
+<<<<<<< HEAD
 if(!Collision){			 			}
 			 else{
 				/*Action*/
 				
 			 }
+=======
+
+if(!Collision){
+	
+		/*Action*/
+		}
+>>>>>>> c58576f527e90451e03781527126d215d428b834
 
 ````
 
@@ -397,7 +424,7 @@ Examples of HFJs, the examples were tested in the last version of electronJs.
 
 [Examples](https://github.com/DunoCgame/Example-HFJs).
 
-# Nota
+# Note
 
 The information presented may be subject to modifications or changes.
 
