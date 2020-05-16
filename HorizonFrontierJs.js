@@ -369,14 +369,7 @@ canvas.onmousemove = function (e) {
    Mouse.PosY = e.pageY - this.offsetTop;
 
 };
-			
-	canvas.addEventListener('mousemove', function(evt) {
-				var mousePos = getMousePos(canvas, evt);
-				Mouse.PosX=mousePos.x;
-				Mouse.PosY=mousePos.y;
-		}, false);
-
-		
+	
 		if(CursorVisibiliti==true){
 				
 				ctx.save();
