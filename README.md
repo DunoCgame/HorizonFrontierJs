@@ -24,7 +24,6 @@ tag so that the library automatically generates the canvas inside it.
 It is recommended to initialize the window outside the game cycle to avoid multiple canvas creation
 to get the full size of the browser window add to the parameters.
 
-
 ```
 Modify the way the window starts, it is no longer necessary to pass an argument as it was done in previous versions, now it automatically 
 adapts to the size of the browser.
@@ -49,9 +48,7 @@ Screen.Canvas.height;
 
 ```
 (function LoopGame(){
-
-      / *Game Features* /
-      
+      / *Game Features* /    
 Game_loop.start (LoopGame);
 
 })();
@@ -238,8 +235,7 @@ Time.state: Returns the boolean.
 ###### Example
 
 ```
-Time.delay(30,true);
-	
+Time.delay(30,true);	
 	if(Time.state==true){
 		/*Action*/	
 	}
@@ -269,7 +265,7 @@ This function allows you to add sound effects to the game.
 
 **Initialization**
 
->var SOUND = new Sound('url');
+>var Sound = new Sound('url');
 
 It should be added outside the loop to avoid calling the audio file multiple times.
 
@@ -337,8 +333,6 @@ It allows the interaction between two objects created an interaction layer corre
 
 >BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
 
-<<<<<<< HEAD
-=======
 ###### Example-1
 
 ````
@@ -354,25 +348,13 @@ if(BoxCollision.state==true){
 else{ state_Collision=false;}
 
 ````
->>>>>>> c58576f527e90451e03781527126d215d428b834
-
 ###### Example-2
 
 ````
 var Collision=BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
-<<<<<<< HEAD
-if(!Collision){			 			}
-			 else{
-				/*Action*/
-				
-			 }
-=======
 
-if(!Collision){
-	
-		/*Action*/
-		}
->>>>>>> c58576f527e90451e03781527126d215d428b834
+if(!Collision){			 			}
+		 else{	/*Action*/ }
 
 ````
 
@@ -398,7 +380,7 @@ if(!CircleCollision){ 	 	 }
 	}
 ````
 
-## Camara
+## Camera
 
 To implement a 'camera' in your game there are two static or dynamic options.
 
