@@ -49,9 +49,7 @@ Screen.Canvas.height;
 
 ```
 (function LoopGame(){
-
-      / *Game Features* /
-      
+      / *Game Features* /    
 Game_loop.start (LoopGame);
 
 })();
@@ -238,8 +236,7 @@ Time.state: Returns the boolean.
 ###### Example
 
 ```
-Time.delay(30,true);
-	
+Time.delay(30,true);	
 	if(Time.state==true){
 		/*Action*/	
 	}
@@ -269,7 +266,7 @@ This function allows you to add sound effects to the game.
 
 **Initialization**
 
->var SOUND = new Sound('url');
+>var Sound = new Sound('url');
 
 It should be added outside the loop to avoid calling the audio file multiple times.
 
@@ -358,16 +355,7 @@ else{ state_Collision=false;}
 var Collision=BoxCollision.init(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
 
 if(!Collision){			 			}
-			 else{
-				/*Action*/
-				
-			 }
-=======
-
-if(!Collision){
-	
-		/*Action*/
-		}
+		 else{	/*Action*/ }
 
 ````
 
@@ -393,7 +381,7 @@ if(!CircleCollision){ 	 	 }
 	}
 ````
 
-## Camara
+## Camera
 
 To implement a 'camera' in your game there are two static or dynamic options.
 
