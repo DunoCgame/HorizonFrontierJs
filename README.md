@@ -31,7 +31,6 @@ adapts to the size of the browser.
 
 Screen.Init(width,height); => Screen.Init();
 ```
-
 ```
 Calling Width of Screen and Height Screen
 
@@ -385,12 +384,12 @@ if(!CircleCollision){ 	 	 }
 
 To implement a 'camera' in your game there are two static or dynamic options.
 
->camara estatica
+>camera static
 
 ````
 Camera.fixed(S,A);
 ````
->camara dinamica
+>camera dynamic
 
 ````
 Camera.Dynamic(S,A,X,Y,W,H,mW,mH );
