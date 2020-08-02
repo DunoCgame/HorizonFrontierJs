@@ -479,57 +479,82 @@ var CircleCollision={
 /**********************/
 		
 /*botones tactil*/
-let TactilButton = {
-	D:0,
-	state:false,
-circle:function(X,Y,R,Color){
+var Valor=0;
+var ClickButton=false;
+function ButtonTouch(X,Y,W,H,R,Color,url){
+	
 	this.X=X;
 	this.Y=Y;
 	this.R=R;
 	this.Color=Color;
-	ctx=Screen.context;
-	
-		ctx.save();
-		ctx.fillStyle=Color;
-		ctx.beginPath();
-		ctx.arc(this.X, this.Y, this.R, 20, 0, (Math.PI/180)*360,true);
-		ctx.closePath;
-		ctx.fill();
-
-		TactilButton.D=Math.floor(Math.sqrt((Math.pow(Mouse.PosX-this.X,2))+(Math.pow(Mouse.PosY-this.Y,2))));
-		
-		if(TactilButton.D<=10  ){
-			TactilButton.state=true;
-			
-		}else{
-			TactilButton.state=false;
-		}		
-},
-
-Square:function(X,Y,W,H,Color){
-
-	this.X=X;
-	this.Y=Y;
+							
+	this.X1=X-50;
+	this.Y2=Y-50;
 	this.W=W;
 	this.H=H;
-	this.Color=Color;
+	this.url=url;
+	
+	
 			
+if(this.url==undefined){		
 			ctx=Screen.context;
+			//circle
 			ctx.save();
-			ctx.fillStyle = Color;
-			ctx.fillRect(this.X, this.Y, this.W, this.H);
+			ctx.fillStyle=Color;
+			ctx.beginPath();
+			ctx.arc(this.X, this.Y, this.R, 20, 0, (Math.PI/180)*360,true);
+			ctx.closePath;
+			ctx.fill();
+			
+			//square
+			ctx.save();
+			ctx.fillStyle = "rgba(255, 255, 255 ,0)";
+			ctx.fillRect(this.X1, this.Y2, this.W, this.H);
 			ctx.restore();
-if ( ((this.X+this.W) > Mouse.PosX)  &&  (this.X < (Mouse.PosX+Mouse.W)) ) {          
-if ( ((this.Y+this.H) > Mouse.PosY)  &&  (this.Y < (Mouse.PosY+Mouse.H)) ) {		
-		TactilButton.state=true;
 }
-}else{
-	TactilButton.state=false;
+	if(this.url!=undefined){
+		
+		ctx=Screen.context;			
+
+		ctx.save();
+		var Urlimg = new Image();
+		Urlimg.src = this.url;
+		ctx.drawImage(Urlimg, this.X1, this.Y2, this.W, this.H);
+		ctx.restore();
 	}
+	
+this.Action = function(){
+
+	Valor = Math.floor(Math.sqrt((Math.pow(Mouse.PosX-this.X,2))+(Math.pow(Mouse.PosY-this.Y,2))));
+
+	var canvas = document.getElementById('canvas');
+	
+	//click
+canvas.onmousedown=function(){ 	 ClickButton=true; 	 	}
+canvas.onmouseup=function(){ 	 ClickButton=false; 	}
+	//click
+
+		if(Valor<=30 && ClickButton==true){		
+					return true;
+		}
+		else
+			if(Valor>=30 && ClickButton==false){
+				return false;
+				
+			}
+		
+
+	
+	
+	}//cierre function_Action
+	
 	
 }
 
-	}
+
+
+
+
 
 /*botones tactil*/
 /********************************************/
@@ -721,7 +746,7 @@ module.exports.KeyboardEvents=KeyboardEvents;
 module.exports.Angletwopoints=Angletwopoints;
 module.exports.Distancepoints=Distancepoints;
 module.exports.BoxCollision=BoxCollision;
-module.exports.TactilButton=TactilButton;
+module.exports.ButtonTouch=ButtonTouch;
 module.exports.Time=Time;
 module.exports.Gravity=Gravity;
 module.exports.Sound=Sound;
