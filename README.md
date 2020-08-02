@@ -184,15 +184,15 @@ The function create an object that interacts with the mouse by clicking on it.
 
 >ButtonTouch(X,Y,W,H,R,Color,url)
 
-````````
-X: sets the position on the X axis.
-Y: sets the position on the Y axis.
-W: Sets the width of the object.
-H: Sets the height of the object.
-R: Set the object radius.
-Color: sets the color of the object.
-url: is the string with the url of the image you want to use. If it stays null use color to keep it in place.
-````````
+````
+-X: sets the position on the X axis.
+-Y: sets the position on the Y axis.
+-W: Sets the width of the object.
+-H: Sets the height of the object.
+-R: Set the object radius.
+-Color: sets the color of the object.
+-url: is the string with the url of the image you want to use. If it stays null use color to keep it in place.
+````
 
 To obtain the value returned by the touch object, use the function ``Action()``, this real return if the event is executed or, on the contrary, it will return false.
 
@@ -200,9 +200,9 @@ To obtain the value returned by the touch object, use the function ``Action()``,
 
 ````
 ButtonTouch(100,100,100,100,50,"green");
-````````
+````
 
-````````
+````
 To obtain the state of the button the function `` .Action () '' is used, which will return true when the event is executed, otherwise it will return false.
 
 var Button = new ButtonTouch(100,100,100,100,40,"green","img.png");
