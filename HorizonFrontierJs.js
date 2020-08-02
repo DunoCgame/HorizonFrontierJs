@@ -559,7 +559,7 @@ canvas.onmouseup=function(){ 	 ClickButton=false; 	}
 /*botones tactil*/
 /********************************************/
 /*Time System*/
-let Time={
+var Time={
 	init:0,
 	i:0,
 	state:false,
@@ -624,7 +624,7 @@ if(stateconter==true){
 		/*Gravity*/ /*Gravity*/
 
 
-let Gravity={
+var Gravity={
 		init:function(state,G){
 			if(state==true){
 				
@@ -666,7 +666,7 @@ function Sound(src){
 /**Sound**//**Sound**//**Sound**//**Sound**/
 /**Camera**/ /**Camera**/ /**Camera**/ /**Camera**/
 
-let Camera = {
+var Camera = {
 	
 fixed:function(S,A){		
 		this.S=S;

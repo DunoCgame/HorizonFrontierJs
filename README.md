@@ -180,7 +180,7 @@ if(Keyboard[/*Tecla a utilizar*/] == true){
 
 ## Touch Button
 
-The activity creates an object that interacts with the rats to click on it.
+The function create an object that interacts with the mouse by clicking on it.
 
 >ButtonTouch(X,Y,W,H,R,Color,url)
 
@@ -192,7 +192,7 @@ R: Set the object radius.
 Color: sets the color of the object.
 url: is the string with the url of the image you want to use. If it stays null use color to keep it in place.
 
-Para obtener el valor devuelto por el objeto tactil se debe hacer uso de la funcion ``Action()`` esta devolvera verdadero si se ejecuo el evento o por el contrario retornara falso.
+To obtain the value returned by the touch object, use the function ``Action()``, this real return if the event is executed or, on the contrary, it will return false.
 
 ###### Example
 
