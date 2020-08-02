@@ -479,7 +479,7 @@ var CircleCollision={
 /**********************/
 		
 /*botones tactil*/
-var Valor=0;
+var Valor=0; 
 var ClickButton=false;
 function ButtonTouch(X,Y,W,H,R,Color,url){
 	
