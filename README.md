@@ -180,27 +180,34 @@ if(Keyboard[/*Tecla a utilizar*/] == true){
 
 ## Touch Button
 
-Create a button on the canvas for use in mobile games or for other interactions by positioning the cursor on the true returned button when this happens, this function allows you to create two types of buttons one of circular shape and another square or rectangular.
+The activity creates an object that interacts with the rats to click on it.
 
-**Circular Button**
+>ButtonTouch(X,Y,W,H,R,Color,url)
 
->TactilButton.Circle(X,Y,R,Color);
+X: sets the position on the X axis.
+Y: sets the position on the Y axis.
+W: Sets the width of the object.
+H: Sets the height of the object.
+R: Set the object radius.
+Color: sets the color of the object.
+url: is the string with the url of the image you want to use. If it stays null use color to keep it in place.
 
-###### Example
-
-```
-if(TactilButton.state==true){ //Action }
-```
-
-**Rectangular Button**
-
-> TactilButton.Square(X,Y,W,H,Color);
+Para obtener el valor devuelto por el objeto tactil se debe hacer uso de la funcion ``Action()`` esta devolvera verdadero si se ejecuo el evento o por el contrario retornara falso.
 
 ###### Example
 
-```
-if(TactilButton.state==true){ //Action }
-```
+````
+ButtonTouch(100,100,100,100,50,"green");
+````````
+To obtain the state of the button the function `` .Action () '' is used, which will return true when the event is executed, otherwise it will return false.
+
+var Button = new ButtonTouch(100,100,100,100,40,"green","img.png");
+ if(Button.Action()==true){
+	   alert("Button"); 
+	  
+  }
+````
+
 
 ## Gravity
 
@@ -384,12 +391,12 @@ if(!CircleCollision){ 	 	 }
 
 To implement a 'camera' in your game there are two static or dynamic options.
 
->camera static
+>Camera static
 
 ````
 Camera.fixed(S,A);
 ````
->camera dynamic
+>Camera dynamic
 
 ````
 Camera.Dynamic(S,A,X,Y,W,H,mW,mH );
