@@ -44,7 +44,7 @@ Screen.Canvas.height;
 
 >Game_loop.start (LoopGame function);
 
-## Wiev Fps and Aps
+## Show Fps and Aps
 
 >Game_loop.start (LoopGame function,boolean);
 

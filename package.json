@@ -1,7 +1,7 @@
 {
   "name": "horizonfrontierjs",
   "description": "Library for the development of Video Games using Javascript technology",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "main": "HorizonFrontierJs.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +22,4 @@
     "url": "https://github.com/DunoCgame/HorizonFrontierJs/issues"
   },
   "homepage": "https://github.com/DunoCgame/HorizonFrontierJs",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  }
 }
