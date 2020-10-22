@@ -44,16 +44,33 @@ Screen.Canvas.height;
 
 >Game_loop.start (LoopGame function);
 
+## Wiev Fps and Aps
+
+>Game_loop.start (LoopGame function,boolean);
+
+```
+The boolean parameter allows to show lso fps and aps of the canvas when it is in True in false or null the data is not visible.
+```
+
 ###### Example:
 
 ```
 (function LoopGame(){
       / *Game Features* /    
-Game_loop.start (LoopGame);
+Game_loop.start(LoopGame);
+
+})();
+
+(function LoopGame(){
+      / *Game Features* /    
+Game_loop.start(LoopGame,true);
 
 })();
 
 ```
+
+
+
 
 ## Crear Figuras
 
@@ -424,3 +441,10 @@ The information presented may be subject to modifications or changes.
 # License
 
 [MIT](https://github.com/DunoCgame/HorizonFrontierJs/blob/master/LICENSE).
+
+# Donate
+
+I do this work during my free time. If you want to support this project. 
+I would appreciate your [donation](https://www.patreon.com/DunoC). these will be used for the maintenance and improvement of the equipment
+
+

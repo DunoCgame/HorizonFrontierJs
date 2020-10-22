@@ -33,21 +33,57 @@ let Screen = {
 /*Screen*/ /*Screen*/ /*Screen*/
 /***************************************************/
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
+
+var registroTemporal = 0;
 let Game_loop={
-			
-start:function(funcion){
+ultimoRegistro:0,
+aps:0,
+fps:0,
+
+
+start:function(funcion,bool){
 		
-		requestAnimationFrame(funcion); 
-
+		requestAnimationFrame(funcion);
 		ctx=Screen.context;
-
 		Screen.Canvas.width==Screen.Canvas.width;
-		Screen.Canvas.height==Screen.Canvas.height;
+		Screen.Canvas.height==Screen.Canvas.height;		
+		
+if(bool==true){	
+	requestAnimationFrame(Game_loop.iterar);
+			ctx.save();
+			ctx.fillStyle="white";
+			ctx.font = "25px Calibri";
+			ctx.fillText("APS: " + Game_loop.aps + " | FPS: " + Game_loop.fps,10,30);
+			ctx.restore();
+}
+		
+				},
+				
+iterar:function(registroTemporal){				
+				Game_loop.FPS();
+				Game_loop.APS();	
+
+				if(registroTemporal - Game_loop.ultimoRegistro > 999) {
+					Game_loop.ultimoRegistro = registroTemporal;
+						Game_loop.aps = 0;
+						Game_loop.fps = 0;
+						
 		
 				}
+},
+				
+FPS:function(){
+
+	Game_loop.fps++;
+		
+},
+
+APS:function(){
+	
+	 Game_loop.aps++;
+}
 
 }
-/*Game_loop*/ /*Game_loop*/ /*Game_loop*/
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
 /**********************************************/
 /**********************************************/
