@@ -7,7 +7,7 @@ let Screen = {
 			 		
 		init:function(){
 			
-				this.Canvas.id="canvas";
+				// this.Canvas.id="canvas";
 				this.context = this.Canvas.getContext("2d");
 				document.body.insertBefore(this.Canvas, document.body.childNodes[0]);
 				document.body.style.margin="0px";
@@ -15,18 +15,32 @@ let Screen = {
 				var s = getComputedStyle(this.Canvas);
 				var w = s.width;
 				var h = s.height;
-						
+			
+				/*obciones style*/
+					this.Canvas.style.display="block";
+					this.Canvas.style.position="absolute";
+					this.Canvas.style.width="100%";
+					this.Canvas.style.height="100%";
+					this.Canvas.style.top="0px";
+					this.Canvas.style.left="0px";
+					this.Canvas.style.right="0px";
+					
+					var s = getComputedStyle(this.Canvas);
+				var w = s.width;
+				var h = s.height;
+				
 				Screen.W = this.Canvas.width = w.split("px")[0];
 				Screen.H = this.Canvas.height = h.split("px")[0];
+				/*obciones style*/
+					},	
 			
-			},
-		ctx:function(){
 			
-			    this.Canvas.id="canvas";
-				this.context = this.Canvas.getContext("2d");
+			ctx:function(){
 				
-				return this.context;
-		}
+					this.Canvas.id="canvas";
+					this.context = this.Canvas.getContext("2d");
+					return this.context;
+			}
 			
 			
 }
@@ -105,8 +119,7 @@ function Square(X,Y,W,H,rote,Color){
 			
 			ctx.fillRect(this.X, this.Y, this.W, this.H);
 			ctx.restore();
-			
-			
+	
 }
 /*Circle*/
 function Circle(X, Y, R, rote, Color){
@@ -393,7 +406,7 @@ var Mouse={
 	PosY:0,
 	W:0,
 	H:0,
-Position:function (CursorVisibiliti,color,W,H,R){
+Position:function(CursorVisibiliti,color,W,H,R){
 	var mousePos=0;
 
 var canvas = document.getElementById('canvas');
@@ -471,7 +484,6 @@ function Angletwopoints(PosX1, PosY1,PosX2, PosY2){
 	return Angulo;
 	
 }
-
 
 // circleCollision
 //BoxCollision
@@ -587,12 +599,187 @@ canvas.onmouseup=function(){ 	 ClickButton=false; 	}
 	
 }
 
-
-
-
-
-
 /*botones tactil*/
+/***Touch superficie***/ /***Touch superficie***/ /***Touch superficie***/ 
+
+var ongoingTouches = new Array;
+ 
+ // SurfaceTouch.X;
+ // SurfaceTouch.Y;
+let SurfaceTouch={
+	X:0,
+	Y:0,
+	
+	Touhs:function(idToFind){
+		  for (var i=0; i<ongoingTouches.length; i++){
+			var id = ongoingTouches[i].identifier;
+				
+			if (id == idToFind){ return i; }
+		  }
+		return -1;    // not found
+    },
+	
+	start:function(){
+			/*iniciar el tactil*/
+				
+		var CanvasMovil = document.getElementById("canvas");
+				
+		CanvasMovil.addEventListener('touchstart',function(event){
+				
+			event.preventDefault();				
+			var touches = event.changedTouches;
+	
+			for (var i=0; i<touches.length; i++) {
+					ongoingTouches.push(touches[i]);
+				 // console.log("touchstart en las siguientes cordenas: X " + touches[i].pageX + " en Y " + touches[i].pageY);
+					
+				SurfaceTouch.X=touches[i].pageX;
+				SurfaceTouch.Y=touches[i].pageY;
+					
+		
+					}
+					
+				});
+
+		},
+		
+	end:function(){
+		var CanvasMovil = document.getElementById("canvas");
+				
+		CanvasMovil.addEventListener('touchend',function(event){
+				event.preventDefault();
+				var touches = event.changedTouches;
+			
+			  for(var i=0; i<touches.length; i++) {
+					ongoingTouches.splice(i, 1);  // remove it; we're done		  
+					
+			  }  
+				// console.log("Touch-End"); //ejecuta cuando termina touch
+			});	
+		},
+		
+	move:function(){
+		var CanvasMovil = document.getElementById("canvas");
+				
+		CanvasMovil.addEventListener('touchmove',function(event){
+
+		  event.preventDefault();
+		  
+		  var touches = event.changedTouches;
+				 
+	for(var i=0; i<touches.length; i++){
+		var idx = SurfaceTouch.Touhs(touches[i].identifier);		
+		ongoingTouches.splice(idx, 1, touches[i]);  // swap in the new touch record
+		console.log("moveX"+touches[i].pageX+"|"+"moveY"+touches[i].pageY);
+		SurfaceTouch.X=touches[i].pageX;
+		SurfaceTouch.Y=touches[i].pageY;
+		  }
+		  
+		// console.log("Touch-move");
+		});
+	},
+	
+	cancel:function(){ 
+			/*si se cancela tactil*/
+		var CanvasMovil = document.getElementById("canvas");
+				
+		CanvasMovil.addEventListener('touchcancel',function(event){	
+			 event.preventDefault();
+			  var touches = event.changedTouches;	  
+			  for(var i=0; i<touches.length; i++) {
+				ongoingTouches.splice(i, 1);  // remove it; we're done
+				// console.log("Touch-Cancel");
+			 
+			 }
+		
+		
+		});
+		
+		},//cierre
+
+	init:function(){
+		
+			// console.log("event-touch");
+				SurfaceTouch.start();
+				SurfaceTouch.end();
+				//SurfaceTouch.move(surface);
+				SurfaceTouch.cancel();
+	}
+
+}
+//cierre del objeto
+var ClickTouch=false;
+var ValorTouch=0;
+function MovilTouchButton(X,Y,W,H,R,Color,url){
+	
+	this.X=X;
+	this.Y=Y;
+	this.R=R;
+	this.Color=Color;
+							
+	this.X1=X-50;
+	this.Y2=Y-50;
+	this.W=W;
+	this.H=H;
+	this.url=url;
+	
+if(this.url==undefined){		
+			ctx=Screen.context;
+			
+			//circle
+			ctx.save();
+			ctx.fillStyle=Color;
+			ctx.beginPath();
+			ctx.arc(this.X, this.Y, this.R, 20, 0, (Math.PI/180)*360,true);
+			ctx.closePath;
+			ctx.fill();
+			
+			//square
+			ctx.save();
+			ctx.fillStyle = "rgba(255, 255, 255 ,0)";
+			ctx.fillRect(this.X1, this.Y2, this.W, this.H);
+			ctx.restore();
+}
+
+ if(this.url!=undefined){
+		
+		ctx=Screen.context;			
+
+		ctx.save();
+		var Urlimg = new Image();
+		Urlimg.src = this.url;
+		ctx.drawImage(Urlimg, this.X1, this.Y2, this.W, this.H);
+		ctx.restore();
+	}
+	
+this.Action = function(){
+
+ValorTouch = Math.floor(Math.sqrt((Math.pow(SurfaceTouch.X-this.X,2))+(Math.pow(SurfaceTouch.Y-this.Y,2))));
+
+	var canvas = document.getElementById('canvas');
+	
+	//click
+canvas.addEventListener('touchstart',function(event){	 ClickTouch=true; 	 	});
+canvas.addEventListener('touchend',function(event){	 ClickTouch=false; 	 	});
+
+	//click
+
+		if(ValorTouch<=30 && ClickTouch==true){		
+					return true;
+		}
+		else
+			if(ValorTouch>=30 && ClickTouch==false){
+					return false;
+				
+			}
+	}
+	//cierre function_Action
+	
+	
+}
+
+/***Touch superficie***/ /***Touch superficie***/ /***Touch superficie***/ 
+
 /********************************************/
 /*Time System*/
 var Time={
@@ -759,12 +946,8 @@ ctx.translate(-this.x,-this.y);
 
 }
 
+/**Camera**/ /**Camera**/ /**Camera**/ /**Camera**/
 
-
-
-
-
-/**Camera**/ /**Camera**/ /**Camera**/ /**Camera**/ 
 /*******Esportar Modulos*/
 
 
@@ -783,6 +966,11 @@ module.exports.Angletwopoints=Angletwopoints;
 module.exports.Distancepoints=Distancepoints;
 module.exports.BoxCollision=BoxCollision;
 module.exports.ButtonTouch=ButtonTouch;
+
+module.exports.SurfaceTouch=SurfaceTouch;
+module.exports.MovilTouchButton=MovilTouchButton;
+
+
 module.exports.Time=Time;
 module.exports.Gravity=Gravity;
 module.exports.Sound=Sound;

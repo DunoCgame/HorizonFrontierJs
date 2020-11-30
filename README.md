@@ -70,8 +70,6 @@ Game_loop.start(LoopGame,true);
 ```
 
 
-
-
 ## Crear Figuras
 
 The Geometry figures used in HorizonFrontierJs are the square and the circle these can use
@@ -224,7 +222,56 @@ To obtain the state of the button the function `` .Action () '' is used, which w
 
 var Button = new ButtonTouch(100,100,100,100,40,"green","img.png");
  if(Button.Action()==true){
-	   alert("Button"); 
+	   console.log("Button");  
+	  
+  }
+````
+## SurfaceTouch
+
+
+SurfaceTouch allows to implement touch actions for mobile devices on the Screen.
+
+#####Calling
+
+>Game.SurfaceTouch.init( );
+
+
+This function returns the X and Y values ​​where the touch was made
+
+````
+SurfaceTouch.X  
+SurfaceTouch.Y
+````
+
+
+## Movil Touch Button
+
+>MovilTouchButton(X,Y,W,H,R,Color,url)
+
+````
+-X: sets the position on the X axis.
+-Y: sets the position on the Y axis.
+-W: Sets the width of the object.
+-H: Sets the height of the object.
+-R: Set the object radius.
+-Color: sets the color of the object.
+-url: is the string with the url of the image you want to use. If it stays null use color to keep it in place.
+````
+
+To obtain the value returned by the touch object, use the function ``Action()``, this real return if the event is executed or, on the contrary, it will return false.
+
+###### Example
+
+````
+MovilTouchButton(100,100,100,100,50,"green");
+````
+
+````
+To obtain the state of the button the function `` .Action () '' is used, which will return true when the event is executed, otherwise it will return false.
+
+var Button = new MovilTouchButton(100,100,100,100,40,"green","img.png");
+ if(Button.Action()==true){
+	   console.log("Button"); 
 	  
   }
 ````
