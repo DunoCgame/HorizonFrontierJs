@@ -5,13 +5,14 @@ let Screen = {
 			H:0,	
 			Canvas:document.createElement("canvas"),
 			 		
-		init:function(){
+		Init:function(){
 			
-				// this.Canvas.id="canvas";
+				this.Canvas.id = "canvas";
 				this.context = this.Canvas.getContext("2d");
 				document.body.insertBefore(this.Canvas, document.body.childNodes[0]);
 				document.body.style.margin="0px";
 				document.body.style.padding="0px";
+				document.body.id="body";
 				var s = getComputedStyle(this.Canvas);
 				var w = s.width;
 				var h = s.height;
@@ -26,341 +27,518 @@ let Screen = {
 					this.Canvas.style.right="0px";
 					
 					var s = getComputedStyle(this.Canvas);
-				var w = s.width;
-				var h = s.height;
-				
-				Screen.W = this.Canvas.width = w.split("px")[0];
-				Screen.H = this.Canvas.height = h.split("px")[0];
+					var w = s.width;
+					var h = s.height;
+					
+					Screen.W = this.Canvas.width = w.split("px")[0];
+					Screen.H = this.Canvas.height = h.split("px")[0];
 				/*obciones style*/
+					},
+			MouseShow:function(data){
+						
+					if(data==false){
+						this.Canvas.style.cursor = "none";
+					}
+					else
+					   if(data==true ){
+							this.Canvas.style.cursor = "block";
+					}
+						
+					},
+		Rote:function(Angle){
+						
+					this.context.rotate(Angle*Math.PI/180);	
+						
+					},		
+		Scale:function(W,H){
+						
+					this.context.scale(W,H);	
+						
 					},	
-			
-			
-			ctx:function(){
+		Translate:function(X,Y){
+						
+					this.context.translate(X,Y);
+						
+					},
+		Save:function(){  
 				
-					this.Canvas.id="canvas";
-					this.context = this.Canvas.getContext("2d");
-					return this.context;
-			}
-			
+					this.context.save();
+				},				
+		Restore:function(){ 
+						
+					this.context.restore();
+				},
+		Clear:function(){
+					this.context.clearRect(0, 0, this.Canvas.width, this.Canvas.height);
+					}
+					
+					
+					
 			
 }
+
+
 /*Screen*/ /*Screen*/ /*Screen*/
 /***************************************************/
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
 
+
 var registroTemporal = 0;
+
 let Game_loop={
-ultimoRegistro:0,
-aps:0,
-fps:0,
-
-
-start:function(funcion,bool){
+	ultimoRegistro:0,
+	Aps:0,
+	Fps:0,
+Start:function(funcion,bool){
 		
 		requestAnimationFrame(funcion);
-		ctx=Screen.context;
-		Screen.Canvas.width==Screen.Canvas.width;
-		Screen.Canvas.height==Screen.Canvas.height;		
 		
-if(bool==true){	
-	requestAnimationFrame(Game_loop.iterar);
+		ctx = Screen.context;
+		Screen.Canvas.width == Screen.Canvas.width;
+		Screen.Canvas.height == Screen.Canvas.height;		
+
+		if(bool == true){	
+			requestAnimationFrame(Game_loop.Iterar);
 			ctx.save();
 			ctx.fillStyle="white";
 			ctx.font = "25px Calibri";
-			ctx.fillText("APS: " + Game_loop.aps + " | FPS: " + Game_loop.fps,10,30);
+			ctx.fillText("APS: " + Game_loop.Aps + " | FPS: " + Game_loop.Fps,10,30);
 			ctx.restore();
-}
+		}
 		
-				},
-				
-iterar:function(registroTemporal){				
-				Game_loop.FPS();
-				Game_loop.APS();	
+				},		
+Iterar:function(registroTemporal){				
+					Game_loop.FPS();
+					Game_loop.APS();	
 
-				if(registroTemporal - Game_loop.ultimoRegistro > 999) {
-					Game_loop.ultimoRegistro = registroTemporal;
-						Game_loop.aps = 0;
-						Game_loop.fps = 0;
-						
-		
-				}
-},
-				
+					if(registroTemporal - Game_loop.ultimoRegistro > 999) {
+						Game_loop.ultimoRegistro = registroTemporal;
+							Game_loop.Aps = 0;
+							Game_loop.Fps = 0;
+							
+			
+					}
+	},			
 FPS:function(){
 
-	Game_loop.fps++;
-		
-},
-
+		Game_loop.Fps++;
+			
+	},
 APS:function(){
-	
-	 Game_loop.aps++;
-}
+		
+		 Game_loop.Aps++;
+	}
 
 }
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
 /**********************************************/
-/**********************************************/
-/**********************************************/
+
 /*Figure*/ /*Figure*/ /*Figure*/
 /*Square*/
-function Square(X,Y,W,H,rote,Color){
-	this.X=X;
-	this.Y=Y;
-	this.W=W;
-	this.H=H;
-	this.rote=rote;
-	this.Color=Color;
-			ctx=Screen.context;
-			
-			ctx.save();
-			ctx.rotate(rote * Math.PI / 180);
-			ctx.fillStyle = Color;
-			
-			ctx.fillRect(this.X, this.Y, this.W, this.H);
-			ctx.restore();
-	
+function Square(X,Y,W,H,Rotate,Point,Colour){
+		
+			this.X = X || 0;
+			this.Y = Y || 0;
+			this.W = W || 100;
+			this.H = H || 100;
+			this.Rotate = Rotate || 0;
+			this.Colour = Colour || "grey";
+			this.Point = Point || "Upper-Left";
+			this.Draw = function(){		
+				
+					ctx=Screen.context;	
+					ctx.save();
+					ctx.translate(this.X, this.Y);					
+					ctx.rotate(this.Rotate*Math.PI/180);			
+					ctx.fillStyle = this.Colour;
+					
+					switch(this.Point){
+						
+					/**Superior-Upper**/
+						case "Upper-Left":
+							ctx.fillRect(0, 0, this.W, this.H);
+						break;
+						case "Upper-Center":
+							ctx.fillRect(0, -this.W/2, this.W, this.H);
+						break;
+						case "Upper-Right":
+							ctx.fillRect(-this.W, 0, this.W, this.H);
+						break;
+						
+					/**Medio-Meddle**/
+						case "Meddle-Left":
+							ctx.fillRect(0, -this.H/2, this.W, this.H);
+						break;
+						case "Meddle-Center":
+							ctx.fillRect(-this.W/2, -this.H/2,  this.W, this.H);
+						break;
+						case "Meddle-Right":
+							ctx.fillRect(-this.W, -this.H/2, this.W, this.H);
+						break;
+						
+					/**Inferior-Lower**/	
+						case "Lower-Left":
+							ctx.fillRect(0, -this.W, this.W, this.H);
+						break;
+						case "Lower-Center":
+							ctx.fillRect(-this.W/2, -this.H, this.W, this.H);
+						break;
+						case "Lower-Right":
+							ctx.fillRect(-this.W, -this.H, this.W, this.H);
+						break;
+						
+						default:
+							
+						}
+						
+					ctx.restore();
+			}
 }
 /*Circle*/
-function Circle(X, Y, R, rote, Color){
-	this.X=X;
-	this.Y=Y;
-	this.R=R;
-
-	this.rote=rote;
-	this.Color=Color;
-	ctx=Screen.context;
-				ctx.save();
-				ctx.rotate(rote * Math.PI / 180);
-				ctx.fillStyle=Color;
-				ctx.beginPath();
-				ctx.arc(this.X, this.Y, this.R,50, 0, (Math.PI/180)*360,true);
-				ctx.closePath;
-				ctx.fill();
+function Circle(X, Y, Radius, Colour){
+	
+	this.X = X || 0;
+	this.Y = Y || 0;
+	this.Radius = Radius || 10;
+	this.Colour = Colour || "grey";
+	
+	this.Draw = function(){
+	
+						ctx = Screen.context;	
+						ctx.save();	
+						
+						ctx.fillStyle = this.Colour;
+						ctx.beginPath();
+						
+						ctx.translate(this.X, this.Y);
+						ctx.arc(0, 0, this.Radius, 50, 0, (Math.PI/180)*360,true);
+						
+						ctx.closePath;
+						ctx.fill();
+						ctx.restore();
+				
+					}
 }
 /*Figure*/ /*Figure*/ /*Figure*/
-/*************************************************/
 /*************************************************/
 /*************************************************/
 /*imagenes*/ /*imagenes*/ /*imagenes*/
 /*imagen*/
-function Images(X,Y,W,H,Url){
+function Images(X,Y,W,H,Url,Rotate,Point){
 	
-	this.X=X;
-	this.Y=Y;
-	this.W=W;
-	this.H=H;
-	this.Url=Url;
-	
-		ctx=Screen.context;
+	this.X = X || 0;
+	this.Y = Y || 0;
+	this.W = W || 100;
+	this.H = H || 100;
+	this.Rotate = Rotate || 0;
+	this.Point = Point || "Upper-Left";
+	this.Url = Url || "node_modules/horizonfrontierjs/Horizon.png" || "https://raw.githubusercontent.com/DunoCgame/HorizonFrontierJs/master/Horizon.png";
+
+
+	this.Draw = function(){
+		
+		ctx = Screen.context;
 		
 		ctx.save();
+		
 		var Urlimg = new Image();
 		Urlimg.src = this.Url;
-		ctx.drawImage(Urlimg, this.X, this.Y, this.W, this.H);
+		
+		ctx.translate(this.X, this.Y);					
+		ctx.rotate(this.Rotate*Math.PI/180);
+
+		switch(this.Point){
+						
+					/**Superior-Upper**/
+						case "Upper-Left":
+							
+							ctx.drawImage(Urlimg, 0, 0, this.W, this.H);
+						break;
+						case "Upper-Center":
+							ctx.drawImage(Urlimg, 0, -this.W/2, this.W, this.H);							
+						break;
+						case "Upper-Right":
+							ctx.drawImage(Urlimg, -this.W, 0, this.W, this.H);
+						break;
+						
+					/**Medio-Meddle**/
+						case "Meddle-Left":
+							
+							ctx.drawImage(Urlimg, 0, -this.H/2, this.W, this.H);
+						break;
+						case "Meddle-Center":
+							ctx.drawImage(Urlimg, -this.W/2, -this.H/2, this.W, this.H);
+						break;
+						case "Meddle-Right":							
+							ctx.drawImage(Urlimg, -this.W, -this.H/2, this.W, this.H);
+						break;
+						
+					/**Inferior-Lower**/	
+						case "Lower-Left":						
+							ctx.drawImage(Urlimg, 0, -this.W, this.W, this.H);
+						break;
+						case "Lower-Center":						
+							ctx.drawImage(Urlimg,-this.W/2, -this.H, this.W, this.H);
+						break;
+						case "Lower-Right":
+							ctx.drawImage(Urlimg,-this.W, -this.H, this.W, this.H);
+						break;
+						
+						default:
+							
+						}
 		ctx.restore();
+		
+	}
 
 }
 
  /*Sprite*/ /*Sprite*/ /*Sprite*/
-function Sprite(x,y,X,Y,W,H,Url){
+function Sprite(x,y,X,Y,W,H,Url,Rotate,Point){
 	
-	this.Url=Url;
+	this.Url = Url || "node_modules/horizonfrontierjs/Horizon.png" || "https://raw.githubusercontent.com/DunoCgame/HorizonFrontierJs/master/Horizon.png";
 	
-/**La IMAGEN LIENSO **/
-	this.x=x;
-	this.y=y;
+	/**La IMAGEN LIENSO **/
+	this.x = x;
+	this.y = y;
 	
+	/**La IMAGEN TOTAL **/
+	this.X = X;
+	this.Y = Y;
 
- /**La IMAGEN TOTAL **/
-	this.X=X;
-	this.Y=Y;
-
-	this.w=W;
-	this.h=H;
+	this.w = W;
+	this.h = H;
 	
-	this.W=W;
-	this.H=H;
-
-ctx=Screen.context;
-
-ctx.save();
-var Url = new Image();
-Url.src = this.Url;
-ctx.drawImage(Url, this.x, this.y, this.w, this.h, this.X, this.Y, this.W, this.H );
-ctx.restore();
+	this.W = W;
+	this.H = H;
+	
+	this.Rotate = Rotate || 0;
+	this.Point = Point || "Upper-Left";
+	
+this.Draw = function(){
+		
+	ctx=Screen.context;
+	ctx.save();
+	
+	var Url = new Image();
+	Url.src = this.Url;
+	ctx.translate(this.X, this.Y);					
+	ctx.rotate(this.Rotate*Math.PI/180);
+	
+		switch(this.Point){
+						
+		/**Superior-Upper**/
+			case "Upper-Left":
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, 0, this.W, this.H );
+			break;
+			case "Upper-Center":
+	
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.W/2, this.W, this.H );				
+			break;
+			case "Upper-Right":
+			
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, this.W, this.W, this.H );
+				
+			break;
+			
+		/**Medio-Meddle**/
+			case "Meddle-Left":
+				
+			
+			ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.H/2, this.W, this.H );
+				
+			break;
+			case "Meddle-Center":
+				
+			ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W/2, -this.H/2, this.W, this.H );
+			
+			break;
+			case "Meddle-Right":							
+		
+			ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W, -this.H/2, this.W, this.H );
+		
+			break;
+			
+		/**Inferior-Lower**/	
+			case "Lower-Left":						
+		
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.W, this.W, this.H );
+			break;
+			case "Lower-Center":						
+			
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W/2, -this.H, this.W, this.H );
+			break;
+			case "Lower-Right":
+			
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W, -this.H, this.W, this.H );
+				
+			break;
+			
+			default:
+				
+			}	
+		
+	ctx.restore();	
+	
+	}
 
 }
 /*imagenes*/
 /*****************************************************/
 /*****************************************************/
-
 /*texto*/ /*texto*/ /*texto*/
-function Text(text,tamano,color,X,Y){
+function Text(Text,Size,Font,Colour,X,Y){
 	
-this.text=text;
-this.tamano=tamano;
-this.color=color;
-this.X=X;
-this.Y=Y;
-
-
-ctx=Screen.context;
-
-	ctx.save();
-	ctx.fillStyle=this.color;
-	ctx.font = this.tamano;
-	ctx.fillText(this.text,this.X,this.Y);
-	ctx.restore();
+		this.Text = Text || "HorizonFrontierJs" ;
+		this.Size = Size || '16px';
+		this.Font = Font || 'Calibri';
+		this.Colour = Colour || "white";
+		this.X = X || 10;
+		this.Y = Y || 10;
+		this.Draw = function(){		
+					ctx=Screen.context;
+					ctx.save();
+					ctx.fillStyle=this.Colour;
+					ctx.font = this.Size+" "+this.Font;
+					ctx.fillText(this.Text,this.X,this.Y);
+					ctx.restore();
+				
+		}
 }
 /*texto*/ /*texto*/ /*texto*/
 /*****************************************************/
-/*Debut*/ /*Debut*/ /*Debut*/
-function Debut(Text,X,Y){
+/*****************************************************/
+/*Debug*/ /*Debug*/ /*Debug*/
+function Debug(Text,X,Y){
 	
-	this.text=Text;
-	this.X=X;
-	this.Y=Y;
+	this.Text = Text;
+	this.X = X;
+	this.Y = Y;
+	this.Draw = function(){
+		ctx = Screen.context;
 
-ctx=Screen.context;
-
-	ctx.save();
-	ctx.fillStyle="black";
-	ctx.font = "25px Calibri";
-	ctx.fillText(this.text,this.X,this.Y);
-	ctx.restore();
-	
+		ctx.save();
+		ctx.fillStyle="black";
+		ctx.font = "25px Calibri";
+		ctx.fillText(this.Text,this.X,this.Y);
+		ctx.restore();
+	}
 }
-/*Debut*/ /*Debut*/ /*Debut*/
-
+/*Debug*/ /*Debug*/ /*Debug*/
+/*****************************************************/
 /*****************************************************/
 //*Transisiones*// //*Transisiones*//////
 var Opacidad = 1;
 var T=0;
-let Transition={
+let Transition = {
 			Decen:1,
 			Acen:0,
-			state:false,
-A:function(color){
-
-			
-				this.color=color;
-					ctx=Screen.context;
-					W=Screen.Canvas.width;
-					H=Screen.Canvas.height;
+			State:false,
+A:function(Colour){
+	
+				this.Colour = Colour;
+				ctx = Screen.context;
+				W = Screen.Canvas.width;
+				H = Screen.Canvas.height;
 			
 	
-				if(this.Acen<H && this.state==false){ this.Acen+=10;}
+				if(this.Acen<H && this.State==false){ this.Acen+=10;}
 				
 				if(this.Acen>=H){
-							this.state=true;		
-							this.Decen=1;
-							this.Acen=0;
-
+							this.State=true;		
 				}
-
-							ctx.save();
-							ctx.fillStyle = this.color;
-							ctx.fillRect(0,0, W, this.Acen);
-							ctx.restore();
-							
-							
-							
+				
+				ctx.save();
+				ctx.fillStyle = this.Colour;
+				ctx.fillRect(0,0, W, this.Acen);
+				ctx.restore();
+									
 				},
-B:function(color){
-				this.color=color;
+B:function(Colour){
+				this.Colour=Colour;
 				ctx=Screen.context;
 				W=Screen.Canvas.width;
 				H=Screen.Canvas.height;
 
-		if(0+H+this.Acen>0){
-		this.Acen-=10;
-		 }else{
+		if(0+H+this.Acen>0 && this.State==false){
+					this.Acen-=10;
+				 }
+				 else{
+					 this.State=true;					 
+				 }
 
-			 this.state=true;
-		 }
-
-						ctx.save();
-						ctx.fillStyle = this.color;
-						ctx.fillRect(0,0+H+this.Acen, W, H);
-						ctx.restore();
+				ctx.save();
+				ctx.fillStyle = this.Colour;
+				ctx.fillRect(0,0+H+this.Acen, W, H);
+				ctx.restore();
 						
 						
 						
 					},				
-C:function(color){
+C:function(Colour){	
+		
+		this.Colour=Colour;
+		
+		ctx = Screen.context;
+		W = Screen.Canvas.width;
+		H = Screen.Canvas.height;
+		
+		if(this.Acen<W && this.State==false){
 			
-		
-	this.color=color;
-	
-	ctx=Screen.context;
-	W=Screen.Canvas.width;
-	H=Screen.Canvas.height;
-	
-	if(this.Acen<W){this.Acen+=10;	}
-				
-					if(this.Acen>W){
-					
-					this.state=true;
-					}
-					
-			ctx.save();
-			ctx.fillStyle = this.color;
-			ctx.fillRect(0,0, this.Acen, H);
-			ctx.restore();
+			this.Acen+=10;	
+		}
+			if(this.Acen>W  && this.State==false){						
+							this.State=true;
+							
+						}
+						
+				ctx.save();
+				ctx.fillStyle = this.Colour;
+				ctx.fillRect(0,0, this.Acen, H);
+				ctx.restore();
 },
-
-D:function(color){
+D:function(Colour){
 		
-	this.color=color;
+	this.Colour = Colour;
 	
-	ctx=Screen.context;
-	W=Screen.Canvas.width;
-	H=Screen.Canvas.height;
+	ctx = Screen.context;
+	W = Screen.Canvas.width;
+	H = Screen.Canvas.height;
 	
-	if(W+this.Acen>=0){
-		
-		this.Acen-=10;
-
+	if(W+this.Acen>=0 && this.State==false){		
+			this.Acen-=10;
 				}
 				else{
-					// // this.Acen+=10; 		
-					
-					this.state=true;
-					}
-					
-					ctx.save();
-			ctx.fillStyle = this.color;
-			// ctx.fillRect(W,0, this.Acen, H);
+					this.State=true;
+					}				
+			ctx.save();
+			ctx.fillStyle = this.Colour;
 			ctx.fillRect(W+this.Acen,0, W+20, H);
 			ctx.restore();
 },
-
-E:function(color){
+E:function(Colour){
 		
-	this.color=color;
-	
-	ctx=Screen.context;
-	W=Screen.Canvas.width;
-	H=Screen.Canvas.height;
-	
-	if(Math.round(this.Acen)!=2){
-	this.Acen=this.Acen+=0.02;
-	
-	}
-	if(Math.round(this.Acen)==2){
-			this.state=true;
-	
-	}	
-			ctx.save();
-			ctx.globalAlpha = this.Acen;
-			ctx.fillStyle = this.color;
-			ctx.fillRect(0,0, W, H);
-			ctx.restore();
+		this.Colour = Colour;
+		
+		ctx = Screen.context;
+		W = Screen.Canvas.width;
+		H = Screen.Canvas.height;
+		
+		if(Math.round(this.Acen)!=2){
+			this.Acen = this.Acen+=0.02;		
+		}
+		if(Math.round(this.Acen)==2){
+				this.State = true;	
+		}	
+				ctx.save();
+				ctx.globalAlpha = this.Acen;
+				ctx.fillStyle = this.Colour;
+				ctx.fillRect(0,0, W, H);
+				ctx.restore();
 },
-F:function(color){
+F:function(Colour){
 		
-	this.color=color;
+	this.Colour=Colour;
 	
 	ctx=Screen.context;
 	W=Screen.Canvas.width;
@@ -371,95 +549,92 @@ F:function(color){
 		this.Decen -= 0.1;
 		
 	}if(Math.round(this.Decen) == 0 ){
-		this.state=true;
+		this.State=true;
 		
 	}
 
-ctx.save();
-ctx.globalAlpha = this.Decen;
-ctx.fillStyle = this.color;
-ctx.fillRect(0,0, W, H);
-ctx.restore();		
+	ctx.save();
+	ctx.globalAlpha = this.Decen;
+	ctx.fillStyle = this.Colour;
+	ctx.fillRect(0,0, W, H);
+	ctx.restore();		
 			
 			
-			},
-resert:function(){ 
-	if(this.state==true){
-				this.state=false;		
+},
+Reset:function(){ 
+	if(this.State==true){
+				this.State=false;		
 				this.Decen=1;
 				this.Acen=0;
+				
 	} 
 }
 		
 		}//cierre
-
 //*Transisiones*// //*Transisiones*//////
-
-		
 /*****************************************************/		
-/*****************************************************/		
-/*****************************************************/			
-		
+/*****************************************************/				
 /*Posicion de mause*/ /*Posicion de mause*/ /*Posicion de mause*/
-var Mouse={
+var Mouse = {
 	PosX:0,
 	PosY:0,
 	W:0,
 	H:0,
-Position:function(CursorVisibiliti,color,W,H,R){
-	var mousePos=0;
+	Position:function(Visibility,Colour,W,H,R){
+		
+		var mousePos=0;
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
 
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
 
+		canvas.onmousemove = function (e) {
+		   Mouse.PosX = e.pageX - this.offsetLeft;
+		   Mouse.PosY = e.pageY - this.offsetTop;
 
-canvas.onmousemove = function (e) {
-   Mouse.PosX= e.pageX - this.offsetLeft;
-   Mouse.PosY = e.pageY - this.offsetTop;
-
-};
+			};
 	
-		if(CursorVisibiliti==true){
+		if(Visibility==true){
 				
 				ctx.save();
-				ctx.fillStyle=color;
+				ctx.fillStyle=Colour;
 				ctx.fillRect(Mouse.PosX,Mouse.PosY,W,H);
 				ctx.restore();
 					
 				ctx.save();
-				ctx.fillStyle=color;
+				ctx.fillStyle=Colour;
 				ctx.beginPath();
 				ctx.arc(Mouse.PosX,Mouse.PosY,R,0,Math.PI*2,true);
 				ctx.closePath;
 				ctx.fill();
+				
+				canvas.style.cursor = "block";
+				
+				
+	ctx.save();
+	ctx.fillStyle="white";
+	ctx.font = "15px Calibri";
+	ctx.fillText("X"+":"+Mouse.PosX+"|"+"Y"+":"+Mouse.PosY+"",Mouse.PosX,Mouse.PosY);
+	ctx.restore();
 		}
-		
+		else{
+			canvas.style.cursor = "none";
+		}
+
 		Mouse.W=W;
 		Mouse.H=H;
-		
-		ctx.save();
-		ctx.fillStyle="white";
-		ctx.font = "15px Calibri";
-		ctx.fillText("X"+":"+Mouse.PosX+"|"+"Y"+":"+Mouse.PosY+"",Mouse.PosX,Mouse.PosY);
-		ctx.restore();
 			
 	}
 }//fin de la funcions
 /*Posicion de mause*/ /*Posicion de mause*/ /*Posicion de mause*/
-
 /*****************************************************/	
 /*****************************************************/	
-/*****************************************************/	
-	
 /*Eventos del teclado*/
 /*Deteccion del teclado*/
-function KeyboardEvents(){
-	
-document.getElementById("body").addEventListener( "keydown", function(e){
-	Keyboard[e.keyCode] = true; 		 });
-	
-document.getElementById("body").addEventListener( "keyup", function(e){
-	Keyboard[e.keyCode] = false; 	 	});
+function KeyboardEvents(){	
+		document.getElementById("body").addEventListener( "keydown", function(e){
+			Keyboard[e.keyCode] = true; 		 });		
+		document.getElementById("body").addEventListener( "keyup", function(e){
+			Keyboard[e.keyCode] = false; 	 	});
 }
 /*Deteccion del teclado*/
 
@@ -467,29 +642,29 @@ document.getElementById("body").addEventListener( "keyup", function(e){
 // sistema_colision
 
 //Colisiones por circunferencia
-function Distancepoints(PosX1, PosY1,PosX2, PosY2){
+function Distancepoints(PosX1,PosY1,PosX2,PosY2){
 
-	var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
+var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
 	return Distancia_entre_dos_Puntos;
 
 }
 
-
-//Angulo entre dos puntos
-function Angletwopoints(PosX1, PosY1,PosX2, PosY2){
+// Angulo entre dos puntos
+function Angletwopoints(PosX1, PosY1, PosX2, PosY2){
 	
-	var Pendiente=((PosX1-(PosX2))/((PosY1-(PosY2))));
-	var AnguloenRadianes=Math.tan(Pendiente);
-	var Angulo=Math.floor(AnguloenRadianes*(180/Math.PI));
-	return Angulo;
+	var Pendiente = ((PosX1-(PosX2))/((PosY1-(PosY2))));
+	var Angle_in_Radians = Math.tan(Pendiente);
+	var Angle = Math.floor(Angle_in_Radians*(180/Math.PI));
+	return Angle;
 	
 }
 
-// circleCollision
+
+
+
+
 //BoxCollision
-var BoxCollision = {
-	
-		init:function(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
+function BoxCollision(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
 			if ( ((PosX1+W1) > PosX2)  &&  (PosX1 < (PosX2+W2)) ) {          
 				if ( ((PosY1+H1) > PosY2)  &&  (PosY1 < (PosY2+H2)) ) {
 					
@@ -500,25 +675,20 @@ var BoxCollision = {
 				return false;
 			}
 	}
-}
 
-var CircleCollision={
-	init:function(PosX1, PosY1, PosX2, PosY2, limit){
+//CircleCollision
+function CircleCollision(PosX1, PosY1, PosX2, PosY2, limit){
 
 		var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
 		if(Distancia_entre_dos_Puntos<=limit){
 			
-			return true;
-			
+			return true;			
 		}
 		else{
 			return false;
 		}
 		
 	}
-}
-
-
 
 
 /*sistema de colisiones*/ /*sistema de colisiones*/ /*sistema de colisiones*/
@@ -529,26 +699,24 @@ var CircleCollision={
 /*botones tactil*/
 var Valor=0; 
 var ClickButton=false;
-function ButtonTouch(X,Y,W,H,R,Color,url){
+function ButtonTouch(X,Y,W,H,R,Colour,Url){
 	
-	this.X=X;
-	this.Y=Y;
-	this.R=R;
-	this.Color=Color;
+	this.X=X || 10;
+	this.Y=Y || 10;
+	this.R=R || 20;
+	this.Colour=Colour || "grey";
 							
 	this.X1=X-50;
 	this.Y2=Y-50;
 	this.W=W;
 	this.H=H;
-	this.url=url;
-	
-	
+	this.Url=Url;
 			
-if(this.url==undefined){		
+if(this.Url==undefined){		
 			ctx=Screen.context;
 			//circle
 			ctx.save();
-			ctx.fillStyle=Color;
+			ctx.fillStyle=Colour;
 			ctx.beginPath();
 			ctx.arc(this.X, this.Y, this.R, 20, 0, (Math.PI/180)*360,true);
 			ctx.closePath;
@@ -560,17 +728,16 @@ if(this.url==undefined){
 			ctx.fillRect(this.X1, this.Y2, this.W, this.H);
 			ctx.restore();
 }
-	if(this.url!=undefined){
+if(this.Url!=undefined){
 		
 		ctx=Screen.context;			
 
 		ctx.save();
 		var Urlimg = new Image();
-		Urlimg.src = this.url;
+		Urlimg.src = this.Url;
 		ctx.drawImage(Urlimg, this.X1, this.Y2, this.W, this.H);
 		ctx.restore();
-	}
-	
+	}	
 this.Action = function(){
 
 	Valor = Math.floor(Math.sqrt((Math.pow(Mouse.PosX-this.X,2))+(Math.pow(Mouse.PosY-this.Y,2))));
@@ -578,8 +745,8 @@ this.Action = function(){
 	var canvas = document.getElementById('canvas');
 	
 	//click
-canvas.onmousedown=function(){ 	 ClickButton=true; 	 	}
-canvas.onmouseup=function(){ 	 ClickButton=false; 	}
+	canvas.onmousedown=function(){ 	 ClickButton=true; 	 	}
+	canvas.onmouseup=function(){ 	 ClickButton=false; 	}
 	//click
 
 		if(Valor<=30 && ClickButton==true){		
@@ -603,13 +770,14 @@ canvas.onmouseup=function(){ 	 ClickButton=false; 	}
 /***Touch superficie***/ /***Touch superficie***/ /***Touch superficie***/ 
 
 var ongoingTouches = new Array;
+var ClickTouch=false;
+var ValorTouch=0;
  
  // SurfaceTouch.X;
  // SurfaceTouch.Y;
-let SurfaceTouch={
+let SurfaceTouch = {
 	X:0,
-	Y:0,
-	
+	Y:0,	
 	Touhs:function(idToFind){
 		  for (var i=0; i<ongoingTouches.length; i++){
 			var id = ongoingTouches[i].identifier;
@@ -617,9 +785,8 @@ let SurfaceTouch={
 			if (id == idToFind){ return i; }
 		  }
 		return -1;    // not found
-    },
-	
-	start:function(){
+    },	
+	Start:function(){
 			/*iniciar el tactil*/
 				
 		var CanvasMovil = document.getElementById("canvas");
@@ -629,21 +796,17 @@ let SurfaceTouch={
 			event.preventDefault();				
 			var touches = event.changedTouches;
 	
-			for (var i=0; i<touches.length; i++) {
-					ongoingTouches.push(touches[i]);
-				 // console.log("touchstart en las siguientes cordenas: X " + touches[i].pageX + " en Y " + touches[i].pageY);
-					
-				SurfaceTouch.X=touches[i].pageX;
-				SurfaceTouch.Y=touches[i].pageY;
-					
-		
-					}
-					
+			for (var i=0; i<touches.length; i++){
+						ongoingTouches.push(touches[i]);			
+						SurfaceTouch.X=touches[i].pageX;
+						SurfaceTouch.Y=touches[i].pageY;
+								
+					}				
 				});
 
 		},
 		
-	end:function(){
+	End:function(){
 		var CanvasMovil = document.getElementById("canvas");
 				
 		CanvasMovil.addEventListener('touchend',function(event){
@@ -651,14 +814,14 @@ let SurfaceTouch={
 				var touches = event.changedTouches;
 			
 			  for(var i=0; i<touches.length; i++) {
-					ongoingTouches.splice(i, 1);  // remove it; we're done		  
+					ongoingTouches.splice(i, 1);    
 					
 			  }  
-				// console.log("Touch-End"); //ejecuta cuando termina touch
+				
 			});	
 		},
 		
-	move:function(){
+	Move:function(){
 		var CanvasMovil = document.getElementById("canvas");
 				
 		CanvasMovil.addEventListener('touchmove',function(event){
@@ -669,17 +832,17 @@ let SurfaceTouch={
 				 
 	for(var i=0; i<touches.length; i++){
 		var idx = SurfaceTouch.Touhs(touches[i].identifier);		
-		ongoingTouches.splice(idx, 1, touches[i]);  // swap in the new touch record
+		ongoingTouches.splice(idx, 1, touches[i]);  
 		console.log("moveX"+touches[i].pageX+"|"+"moveY"+touches[i].pageY);
 		SurfaceTouch.X=touches[i].pageX;
 		SurfaceTouch.Y=touches[i].pageY;
 		  }
 		  
-		// console.log("Touch-move");
+		
 		});
 	},
 	
-	cancel:function(){ 
+	Cancel:function(){ 
 			/*si se cancela tactil*/
 		var CanvasMovil = document.getElementById("canvas");
 				
@@ -687,9 +850,8 @@ let SurfaceTouch={
 			 event.preventDefault();
 			  var touches = event.changedTouches;	  
 			  for(var i=0; i<touches.length; i++) {
-				ongoingTouches.splice(i, 1);  // remove it; we're done
-				// console.log("Touch-Cancel");
-			 
+				ongoingTouches.splice(i, 1);  
+		
 			 }
 		
 		
@@ -697,25 +859,22 @@ let SurfaceTouch={
 		
 		},//cierre
 
-	init:function(){
-		
-			// console.log("event-touch");
-				SurfaceTouch.start();
-				SurfaceTouch.end();
-				//SurfaceTouch.move(surface);
-				SurfaceTouch.cancel();
+	Init:function(){
+				SurfaceTouch.Start();
+				SurfaceTouch.End();
+				//SurfaceTouch.Move(surface);
+				SurfaceTouch.Cancel();
 	}
 
 }
 //cierre del objeto
-var ClickTouch=false;
-var ValorTouch=0;
-function MovilTouchButton(X,Y,W,H,R,Color,url){
+
+function MovilTouchButton(X,Y,W,H,R,Colour,url){
 	
 	this.X=X;
 	this.Y=Y;
 	this.R=R;
-	this.Color=Color;
+	this.Colour=Colour;
 							
 	this.X1=X-50;
 	this.Y2=Y-50;
@@ -728,7 +887,7 @@ if(this.url==undefined){
 			
 			//circle
 			ctx.save();
-			ctx.fillStyle=Color;
+			ctx.fillStyle=Colour;
 			ctx.beginPath();
 			ctx.arc(this.X, this.Y, this.R, 20, 0, (Math.PI/180)*360,true);
 			ctx.closePath;
@@ -752,15 +911,15 @@ if(this.url==undefined){
 		ctx.restore();
 	}
 	
-this.Action = function(){
+	this.Action = function(){
 
-ValorTouch = Math.floor(Math.sqrt((Math.pow(SurfaceTouch.X-this.X,2))+(Math.pow(SurfaceTouch.Y-this.Y,2))));
+	ValorTouch = Math.floor(Math.sqrt((Math.pow(SurfaceTouch.X-this.X,2))+(Math.pow(SurfaceTouch.Y-this.Y,2))));
 
-	var canvas = document.getElementById('canvas');
-	
-	//click
-canvas.addEventListener('touchstart',function(event){	 ClickTouch=true; 	 	});
-canvas.addEventListener('touchend',function(event){	 ClickTouch=false; 	 	});
+		var canvas = document.getElementById('canvas');
+		
+		//click
+	canvas.addEventListener('touchstart',function(event){	 ClickTouch=true; 	 	});
+	canvas.addEventListener('touchend',function(event){	 ClickTouch=false; 	 	});
 
 	//click
 
@@ -782,55 +941,54 @@ canvas.addEventListener('touchend',function(event){	 ClickTouch=false; 	 	});
 
 /********************************************/
 /*Time System*/
-var Time={
-	init:0,
+var Time = {
+	Init:0,
 	i:0,
-	state:false,
-	Delay:function(Capture,stateconter){
+	State:false,
+Delay:function(Capture,Stateconter){
 	
-	if(stateconter==true ){
+		if(Stateconter==true ){
 
-		if(Time.init<Capture){
-				
-				Time.init+=1;
-				
-		}
-		if(Time.init<Capture ){				
-					
-					Time.state=false;
-					
-			}else
-				if(Time.init>=Capture){
-
-					Time.state=true;
-					
+				if(Time.Init<Capture){
+						
+						Time.Init+=1;
+						
 				}
-				
-			
-			
-	}//cierre boleano
+				if(Time.Init<Capture ){				
+							
+							Time.State=false;
+							
+					}else
+						if(Time.Init>=Capture){
+
+							Time.State=true;
+							
+						}
+						
+						
+		}//cierre boleano
 
 },
 //cierre delay 
-Interval:function(Capture,end,stateconter){ 	
+Interval:function(Capture,End,Stateconter){ 	
 	
-if(stateconter==true){
+if(Stateconter==true){
 
 		Time.i+=1;
 	
 		if(Time.i>0 && Time.i<Capture ){
 			
-				Time.state=false;
+				Time.State=false;
 		 
 		}else
 			if(Time.i>=Capture){
 
-				Time.state=true;
+				Time.State=true;
 				
 			}
 			
 			
-		if(Time.i==end){ 	Time.i=0; 				}
+		if(Time.i==End){ 	Time.i=0; 				}
 				
 		
 
@@ -844,54 +1002,48 @@ if(stateconter==true){
 /*Time System*/
 
 /********************************************/
-		/*Gravity*/ /*Gravity*/
-
-
-var Gravity={
-		init:function(state,G){
-			if(state==true){
-				
+/*Gravity*/ /*Gravity*/
+function Gravity(State,G){
+			if(State==true){				
 				return G;
-								
-				console.log("NameObj",NameObj);
-				
 				}
-				if(state==false){
+				if(State==false){
 					
 					return 0;	
 				}
-		}
-}
-
-
+}				
 /*Gravity*/ /*Gravity*/
 /************************/
 /**Sound**//**Sound**//**Sound**//**Sound**/
 	
-function Sound(src){
+function Sound(src,auto_play,loop,volume){
+	
 			this.Sound = document.createElement("audio");
-			this.Sound.src = src;
-			this.Sound.setAttribute("preload","auto");
-			this.Sound.setAttribute("controls", "none");
-			this.Sound.style.display = "none";		 
-			document.body.appendChild(this.Sound);
-			this.play = function(){
-					this.Sound.play();
-			  }	  
-			this.stop = function(){
-					this.Sound.pause();	
-			  }
-			  
+			this.Sound.id = "audio";
+			this.Sound.src = src;		
+			this.Sound.preload="auto";
+			this.Sound.controls="display";		
+			this.Sound.loop = loop; //
+			this.Sound.autoplay = auto_play;
+			this.Sound.muted = false ; //
+			this.Sound.volume = volume; // max =1			
+			this.Sound.style.display = "none";
 			
+			document.body.appendChild(this.Sound);
+				this.Play = function(){
+						this.Sound.play();
+				  }	  
+				this.Stop = function(){
+						this.Sound.pause();
+				  }
+				  
 }
-
-
 /**Sound**//**Sound**//**Sound**//**Sound**/
 /**Camera**/ /**Camera**/ /**Camera**/ /**Camera**/
 
 var Camera = {
 	
-fixed:function(S,A){		
+Fixed:function(S,A){		
 		this.S=S;
 		this.A=A;
 		if(this.S==null){ 			this.E=1; 		}
@@ -900,7 +1052,7 @@ fixed:function(S,A){
 		ctx=Screen.context;
 		
 		ctx.setTransform(this.S,this.A,this.A,this.S,0,0);
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.clearRect(0, 0, Screen.Canvas.width, Screen.Canvas.height);
 
 		},
 Dynamic:function(S,A,X,Y,W,H,mW,mH){
@@ -908,37 +1060,34 @@ Dynamic:function(S,A,X,Y,W,H,mW,mH){
 			this.S = S;
 			this.A = A;
 			
-		this.x = X+W/2 - canvas.width/2; 
-		this.y = Y+H/2 - canvas.height/2;	
+		this.x = X+W/2 - Screen.Canvas.width/2; 
+		this.y = Y+H/2 - Screen.Canvas.height/2;	
 
 
-			this.mapW = mW;
-			this.mapH = mH;	
+		this.mapW = mW;
+		this.mapH = mH;	
 
 			ctx=Screen.context;
 					
 			ctx.setTransform(this.S,this.A,this.A,this.E,0,0);
-			ctx.clearRect(0,0,canvas.width, canvas.height);
+			ctx.clearRect(0, 0, Screen.Canvas.width, Screen.Canvas.height);
 			
 		   if (this.x < 0) {
-                this.x = 0;
-					
+                this.x = 0;				
             } 
-			else if (this.x > this.mapW - Screen.Canvas.width) {
-					 this.x = this.mapW - Screen.Canvas.width;
-					 
-					
+			else 
+			if (this.x > this.mapW - Screen.Canvas.width) {
+							this.x = this.mapW - Screen.Canvas.width;					
             }
             if (this.y < 0) {
-                this.y = 0;
-					
+                this.y = 0;					
             }
-			else if (this.y > this.mapH - Screen.Canvas.height) {
-                     this.y = this.mapH - Screen.Canvas.height;
-					
+			else 
+				if (this.y > this.mapH - Screen.Canvas.height) {
+							this.y = this.mapH - Screen.Canvas.height;					
             }
 			
-ctx.translate(-this.x,-this.y);
+ctx.translate(-this.x,-this.y); //ejecuta el movimiento de la camara 
 
 
 	}
@@ -947,6 +1096,9 @@ ctx.translate(-this.x,-this.y);
 }
 
 /**Camera**/ /**Camera**/ /**Camera**/ /**Camera**/
+
+
+
 
 /*******Esportar Modulos*/
 
@@ -958,13 +1110,18 @@ module.exports.Circle=Circle;
 module.exports.Images=Images;
 module.exports.Sprite=Sprite;
 module.exports.Text=Text;
-module.exports.Debut=Debut;
+module.exports.Debug=Debug;
 module.exports.Transition=Transition;
 module.exports.Mouse=Mouse;
+
 module.exports.KeyboardEvents=KeyboardEvents;
+
 module.exports.Angletwopoints=Angletwopoints;
 module.exports.Distancepoints=Distancepoints;
+
+
 module.exports.BoxCollision=BoxCollision;
+module.exports.CircleCollision=CircleCollision;
 module.exports.ButtonTouch=ButtonTouch;
 
 module.exports.SurfaceTouch=SurfaceTouch;
