@@ -32,14 +32,14 @@ Calling Width of Screen and Height Screen
 show and hide mouse
 Data is a Boolean value True or False that indicates whether or not the mouse will be displayed on the screen
  ```
-
-###### Clear Screen
+###
+### Clear Screen
 
 >Screen.Clear();
 
 It is added in the game cycle to clean window
 
-###### To use the SAVE, Rotate, Translate, Restore, Scale functions canvas api web
+###### To use the Save, Rotate, Translate, Restore, Scale functions canvas api web
 
 >Screen.Save();
 ```
@@ -53,9 +53,9 @@ Returns previously saved path state and attributes
 ```
 W is the width of the scale
 H the top of the scale
-
-example
-
+```
+###### Example:
+```
 Screen.scale(2, 2);
 
 1=100%, 0.5=50%, 2=200%
@@ -63,18 +63,18 @@ Screen.scale(2, 2);
 >Screen.Rote(Angle);
 ```
 The angle is the value that the figure will rotate in degrees
-
-example
-
+```
+###### Example:
+```
 Screen.Rote(20);
 ``` 
 >Screen.Translate(X,Y);
 ``` 
 X is the position that the object will translate
 Y it is the position that will translate the object
-
-example
-
+```
+###### Example:
+```
 Screen.Translate(10,10);
 ``` 
 
@@ -97,7 +97,7 @@ Screen.Translate(10,10);
 The boolean parameter allows to show lso fps and aps of the canvas when it is in True in false or null the data is not visible.
 ```
 
-###### Example:
+###### Example
 
 ```
 (function LoopGame(){
@@ -682,5 +682,3 @@ Examples of HFJs, the examples were tested in the last version of electronJs.
 
 I do this work during my free time. If you want to support this project. 
 I would appreciate your [donation](https://www.patreon.com/DunoC). these will be used for the maintenance and improvement of the equipment
-
-
