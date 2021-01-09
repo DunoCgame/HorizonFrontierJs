@@ -681,4 +681,8 @@ Examples of HFJs, the examples were tested in the last version of electronJs.
 # Donate
 
 I do this work during my free time. If you want to support this project. 
+<<<<<<< HEAD
 I would appreciate your [donation](https://www.patreon.com/DunoC). these will be used for the maintenance and improvement of the equipment
+=======
+I would appreciate your [donation](https://www.patreon.com/DunoC). these will be used for the maintenance and improvement of the equipment
+>>>>>>> 0f1571cc5f8fb6d4bd91418a4c09bbc2360ad5f7
