@@ -1,7 +1,7 @@
 {
   "name": "horizonfrontierjs",
   "description": "Library for the development of Video Games using Javascript technology",
-  "version": "2.0.0",
+  "version": "1.9.9",
   "main": "HorizonFrontierJs.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
