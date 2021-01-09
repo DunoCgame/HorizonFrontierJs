@@ -39,19 +39,17 @@ Data is a Boolean value True or False that indicates whether or not the mouse wi
 
 It is added in the game cycle to clean window
 
->To use the SAVE, Rotate, Translate, Restore, Scale functions canvas api web
+###### To use the SAVE, Rotate, Translate, Restore, Scale functions canvas api web
 
 >Screen.Save();
 ```
 Saves the state of the screen
 ```
-
 >Screen.Restore();
 ```
 Returns previously saved path state and attributes
 ```
-
-Screen.Scale(W,H);
+>Screen.Scale(W,H);
 ```
 W is the width of the scale
 H the top of the scale
@@ -61,9 +59,8 @@ example
 Screen.scale(2, 2);
 
 1=100%, 0.5=50%, 2=200%
-
 ```
-Screen.Rote(Angle);
+>Screen.Rote(Angle);
 ```
 The angle is the value that the figure will rotate in degrees
 
@@ -71,7 +68,7 @@ example
 
 Screen.Rote(20);
 ``` 
-Screen.Translate(X,Y);
+>Screen.Translate(X,Y);
 ``` 
 X is the position that the object will translate
 Y it is the position that will translate the object
