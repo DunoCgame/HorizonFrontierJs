@@ -54,7 +54,7 @@ Returns previously saved path state and attributes
 W is the width of the scale
 H the top of the scale
 ```
-###### Example:
+###### Example
 ```
 Screen.scale(2, 2);
 
@@ -64,7 +64,7 @@ Screen.scale(2, 2);
 ```
 The angle is the value that the figure will rotate in degrees
 ```
-###### Example:
+###### Example
 ```
 Screen.Rote(20);
 ``` 
@@ -73,7 +73,7 @@ Screen.Rote(20);
 X is the position that the object will translate
 Y it is the position that will translate the object
 ```
-###### Example:
+###### Example
 ```
 Screen.Translate(10,10);
 ``` 
