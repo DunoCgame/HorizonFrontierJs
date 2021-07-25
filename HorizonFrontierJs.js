@@ -36,13 +36,13 @@ let Screen = {
 					},
 			MouseShow:function(data){
 						
-					if(data==false){
-						this.Canvas.style.cursor = "none";
-					}
-					else
-					   if(data==true ){
-							this.Canvas.style.cursor = "block";
-					}
+						if(data==false){
+							this.Canvas.style.cursor = "none";
+						}
+						else
+						   if(data==true ){
+								this.Canvas.style.cursor = "block";
+						}
 						
 					},
 		Rote:function(Angle){
@@ -81,53 +81,53 @@ let Screen = {
 /*Screen*/ /*Screen*/ /*Screen*/
 /***************************************************/
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
-
-
-var registroTemporal = 0;
-
 let Game_loop={
-	ultimoRegistro:0,
-	Aps:0,
-	Fps:0,
-Start:function(funcion,bool){
-		
-		requestAnimationFrame(funcion);
+	FPS:0,
+	APS:0,
+	LastTime:0,
+	DeltaTime:0,
+	TimerDeltaTime:0,
+	Stop:false,
+	loop:null,
+	
+Start:function(funcion,wiev,time){
 		
 		ctx = Screen.context;
-		Screen.Canvas.width == Screen.Canvas.width;
-		Screen.Canvas.height == Screen.Canvas.height;		
+		
+		window.addEventListener("resize", function(event) {
+		
+		// console.log(document.body.clientWidth + ' wide by ' + document.body.clientHeight+' high');
+				Screen.Canvas.width == Screen.Canvas.width;
+				Screen.Canvas.height == Screen.Canvas.height;		
 
-		if(bool == true){	
-			requestAnimationFrame(Game_loop.Iterar);
+		})
+
+		Game_loop.FPS = Math.round(Number((1000/(time - Game_loop.LastTime)).toFixed(2)));	
+		Game_loop.APS = Math.round(Number((1000/(time - Game_loop.LastTime)).toFixed(2)));	
+		
+		Game_loop.LastTime = time;
+		
+		 Game_loop.TimerDeltaTime = (1/Game_loop.FPS);
+		
+		
+		if(!isNaN(Game_loop.TimerDeltaTime)){
+			
+			Game_loop.DeltaTime = Game_loop.TimerDeltaTime*Game_loop.FPS;
+			
+		}
+	
+		if(wiev == true){	
 			ctx.save();
 			ctx.fillStyle="white";
 			ctx.font = "25px Calibri";
-			ctx.fillText("APS: " + Game_loop.Aps + " | FPS: " + Game_loop.Fps,10,30);
+			ctx.fillText(" FPS: " + Game_loop.FPS +" | "+" APS: " + Game_loop.APS+" | "+"T∆ "+Game_loop.DeltaTime,10,30);
 			ctx.restore();
 		}
 		
-				},		
-Iterar:function(registroTemporal){				
-					Game_loop.FPS();
-					Game_loop.APS();	
-
-					if(registroTemporal - Game_loop.ultimoRegistro > 999) {
-						Game_loop.ultimoRegistro = registroTemporal;
-							Game_loop.Aps = 0;
-							Game_loop.Fps = 0;
-							
-			
-					}
-	},			
-FPS:function(){
-
-		Game_loop.Fps++;
-			
-	},
-APS:function(){
+		Game_loop.loop = requestAnimationFrame(funcion);
 		
-		 Game_loop.Aps++;
 	}
+
 
 }
 /*Game_loop*/ /*Game_loop*/ /*Game_loop*/
@@ -1003,15 +1003,22 @@ if(Stateconter==true){
 
 /********************************************/
 /*Gravity*/ /*Gravity*/
-function Gravity(State,G){
-			if(State==true){				
-				return G;
-				}
-				if(State==false){
+// function Gravity(ObjectCollision,ForseGravity,PosPlayer){
+			// if(State==true){				
+				// return G;
+				// }
+				// if(State==false){
 					
-					return 0;	
-				}
-}				
+					// return 0;	
+				// // }
+			// if(state){
+				
+				
+				
+			// }
+				
+				
+// }				
 /*Gravity*/ /*Gravity*/
 /************************/
 /**Sound**//**Sound**//**Sound**//**Sound**/
@@ -1129,7 +1136,7 @@ module.exports.MovilTouchButton=MovilTouchButton;
 
 
 module.exports.Time=Time;
-module.exports.Gravity=Gravity;
+// module.exports.Gravity=Gravity;
 module.exports.Sound=Sound;
 module.exports.Camera = Camera;
 

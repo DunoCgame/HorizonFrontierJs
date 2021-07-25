@@ -87,14 +87,23 @@ Screen.Translate(10,10);
 
 ## Create Loop Game
 
->Game_loop.start (LoopGame function);
+>Game_loop.start(LoopGame function);
 
-## Show Fps and Aps
+## Show Fps and Aps 
 
->Game_loop.start (LoopGame function, boolean);
+>Game_loop.start (LoopGame function, wievi, time);
 
 ```
-The boolean parameter allows to show lso fps and aps of the canvas when it is in True in false or null the data is not visible.
+The wiev is an boolean parameter allows to show lso fps and aps of the canvas when it is in True in false or null the data is not visible.
+The time parameter is a value that comes from the loop function that contains the game update.
+```
+
+## DeltaTime
+
+>Game.Game_loop.DeltaTime;
+
+```
+Game.Game_loop.DeltaTime allows to obtain the delta time of the game loop
 ```
 
 ###### Example
@@ -111,6 +120,14 @@ Game_loop.start(LoopGame);
 			/ *Game Features* /    
 Game_loop.start(LoopGame,true);
 })();
+
+
+(function LoopGame(time){
+		/*add clear secreen*/
+		/*Game Features*/
+		Game.Game_loop.Start(LoopGame,true,time);
+})();
+ 
 ```
 
 ## Crear Figuras
@@ -448,14 +465,6 @@ var Button = new MovilTouchButton(100,100,100,100,40,"green","img.png");
 	  
   }
 ````
-
-## Gravity
-
->Gravity.Init(bool,value);
-
-If the bool parameter is set to true, gravity will affect the object.
-while the value parameter indicates the force of gravity.
-When the bool parameter is set to `` false``, the effect of gravity stops.
 
 ## Time
 
