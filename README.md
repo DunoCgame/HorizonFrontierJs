@@ -152,7 +152,7 @@ Colour indicates the Colour that "String" will have
 ###### Example 1
 	
 ```
-let  Square = new Square(0,0,100,100,0,"Upper-Left" "green");
+let  Square = new Square(0,0,100,100,0,"Upper-Left","green");
 ```
 
 ###### Example 2
@@ -626,7 +626,7 @@ if(!Collision){			 			}
 
 It allows to detect collisions through a circular layer that surrounds the object.
 
->CircleCollision(PosX-Object1, PosY-Object1, PosX-Object2, PosY-Object2, limit);
+>CircleCollision(PosX-Object1, PosY-Object1, Radius-Object1, PosX-Object2, PosY-Object2, Radius-Object2);
 
 ````
 Limit:
@@ -637,7 +637,7 @@ Determine the minimum distance between the two defined objects
 ###### Example
 
 ````
-var Collision  = new CircleCollision.init(PosX-Object1, PosY-Object1, PosX-Object2, PosY-Object2, limit);
+var Collision  = new CircleCollision.init(PosX-Object1, PosY-Object1, Radius-Object1, PosX-Object2, PosY-Object2, Radius-Object2);
 if(!CircleCollision){ 	 	 }
 	else{
 		/*Action*/

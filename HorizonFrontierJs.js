@@ -34,7 +34,7 @@ let Screen = {
 					Screen.H = this.Canvas.height = h.split("px")[0];
 				/*obciones style*/
 					},
-			MouseShow:function(data){
+		MouseShow:function(data){
 						
 						if(data==false){
 							this.Canvas.style.cursor = "none";
@@ -315,7 +315,7 @@ function Sprite(x,y,X,Y,W,H,Url,Rotate,Point){
 	this.Rotate = Rotate || 0;
 	this.Point = Point || "Upper-Left";
 	
-this.Draw = function(){
+        this.Draw = function(){
 		
 	ctx=Screen.context;
 	ctx.save();
@@ -460,7 +460,7 @@ B:function(Colour){
 				W=Screen.Canvas.width;
 				H=Screen.Canvas.height;
 
-		if(0+H+this.Acen>0 && this.State==false){
+		             if(0+H+this.Acen>0 && this.State==false){
 					this.Acen-=10;
 				 }
 				 else{
@@ -595,29 +595,32 @@ var Mouse = {
 	
 		if(Visibility==true){
 				
-				ctx.save();
-				ctx.fillStyle=Colour;
-				ctx.fillRect(Mouse.PosX,Mouse.PosY,W,H);
-				ctx.restore();
-					
-				ctx.save();
-				ctx.fillStyle=Colour;
-				ctx.beginPath();
-				ctx.arc(Mouse.PosX,Mouse.PosY,R,0,Math.PI*2,true);
-				ctx.closePath;
-				ctx.fill();
-				
-				canvas.style.cursor = "block";
-				
-				
-	ctx.save();
-	ctx.fillStyle="white";
-	ctx.font = "15px Calibri";
-	ctx.fillText("X"+":"+Mouse.PosX+"|"+"Y"+":"+Mouse.PosY+"",Mouse.PosX,Mouse.PosY);
-	ctx.restore();
+	                ctx.save();
+		        ctx.fillStyle=Colour;
+		        ctx.fillRect(Mouse.PosX,Mouse.PosY,W,H);
+		        ctx.restore();
+			
+		        ctx.save();
+		        ctx.fillStyle=Colour;
+		        ctx.beginPath();
+		        ctx.arc(Mouse.PosX,Mouse.PosY,R,0,Math.PI*2,true);
+		        ctx.closePath;
+		        ctx.fill();
+		
+		        canvas.style.cursor = "block";
+		
+		
+                        ctx.save();
+                        ctx.fillStyle="white";
+                        ctx.font = "15px Calibri";
+                        ctx.fillText("X"+":"+Mouse.PosX+"|"+"Y"+":"+Mouse.PosY+"",Mouse.PosX,Mouse.PosY);
+                        ctx.restore();
+                        
 		}
 		else{
-			canvas.style.cursor = "none";
+			
+		        canvas.style.cursor = "none";
+			
 		}
 
 		Mouse.W=W;
@@ -677,10 +680,10 @@ function BoxCollision(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
 	}
 
 //CircleCollision
-function CircleCollision(PosX1, PosY1, PosX2, PosY2, limit){
+function CircleCollision(PosX1, PosY1, Radius1 PosX2, PosY2, Radius2){
 
 		var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
-		if(Distancia_entre_dos_Puntos<=limit){
+		if(Distancia_entre_dos_Puntos<=Radius1+Radius2){
 			
 			return true;			
 		}
