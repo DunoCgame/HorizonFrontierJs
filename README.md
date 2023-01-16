@@ -165,14 +165,14 @@ let Square = new Square(0,0,100,100,0,"Upper-Left","green").Draw();
 
 ```
 let MySquare = new Square();
-MySquare.X=100;
-MySquare.Y=100;	
-MySquare.W=100;
-MySquare.H=100;
-MySquare.Rotate=0
-MySquare.Point="Upper-Left";
-MySquare.Colour="blue";
-MySquare.Draw(); 
+	MySquare.X=100;
+	MySquare.Y=100;	
+	MySquare.W=100;
+	MySquare.H=100;
+	MySquare.Rotate=0
+	MySquare.Point="Upper-Left";
+	MySquare.Colour="blue";
+	MySquare.Draw(); 
 
 ```
 >to paint the figure on the screen use 	```Square.Draw(); ```
@@ -225,16 +225,19 @@ Point is the center of the axis of the figure by default is "Upper-Left" "String
 ```
 
 ###### Example 1
+
 ```
 let MyImage = new Images(0,0,100,100,'../image.png');
 	   MyImage.Draw();
+	   
 ```
 ```
 new Images(0,0,100,100,'../image.png').Draw();
 ```
 
 ###### Example 2
-```let MyIMG = new Images();
+```
+let MyIMG = new Images();
 		MyIMG.X = 200;
 		MyIMG.Y = 200;
 		MyIMG.W = 100;
@@ -265,7 +268,8 @@ Rotate allows the figure to rotate
 Point is the center of the axis of the figure by default is "Upper-Left" "String"
 ```
 ###### Example 1
-```let MySprite = new Sprite(0,0,0,0,100,100,'../url.png);
+```
+let MySprite = new Sprite(0,0,0,0,100,100,'../url.png);
 		MySprite.Draw();
 ```
 ```
@@ -291,7 +295,6 @@ let MySprite = new Sprite(0,0,0,0,100,100,'../url.png');
 As the name implies, enter text into the scene.
 
 >Text(Text,Size,Font,Colour,X,Y);
-
 ```
 Text is the text to use is a "string"
 Size It is the size of the text
@@ -366,7 +369,7 @@ false at start and true at end.
 
 >Transition.Reset();
 
-with 'Transition.Reset'you can reset the values ​​of a transition.
+with 'Transition.Reset'you can reset the values of a transition.
 
 ###### Example
 
@@ -471,7 +474,7 @@ SurfaceTouch allows to implement touch actions for mobile devices on the Screen.
 
 >Game.SurfaceTouch.Init();
 
-This function returns the X and Y values ​​where the touch was made
+This function returns the X and Y values where the touch was made
 
 ````
 SurfaceTouch.X  
