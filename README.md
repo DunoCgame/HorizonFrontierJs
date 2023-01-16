@@ -214,7 +214,8 @@ This function allows you to implement images in your project, to enter an object
 
 > Images(X,Y,W,H,Url,Rotate,Point)
 
-```X is the position of the X axis of the image
+```
+X is the position of the X axis of the image
 And the position in and of the image
 W the width of the image
 H is the height of the image
@@ -224,14 +225,16 @@ Point is the center of the axis of the figure by default is "Upper-Left" "String
 ```
 
 ###### Example 1
-```let MyImage = new Images(0,0,100,100,'../image.png');
+```
+let MyImage = new Images(0,0,100,100,'../image.png');
 	   MyImage.Draw();
 ```
 ```new Images(0,0,100,100,'../image.png').Draw();
 ```
 
 ###### Example 2
-```let MyIMG = new Images();
+```
+let MyIMG = new Images();
 		MyIMG.X = 200;
 		MyIMG.Y = 200;
 		MyIMG.W = 100;
@@ -262,7 +265,8 @@ Rotate allows the figure to rotate
 Point is the center of the axis of the figure by default is "Upper-Left" "String"
 ```
 ###### Example 1
-```let MySprite = new Sprite(0,0,0,0,100,100,'../url.png);
+```
+let MySprite = new Sprite(0,0,0,0,100,100,'../url.png);
 		MySprite.Draw();
 ```
 ```new Sprite(0,0,0,0,100,100,'../url.png).Draw();
@@ -296,7 +300,8 @@ X is for position on the X axis
 Y is the position on the Y axis
 ```
 ###### Example1
-```let MyText = new Text('HelloWord','20px','Calibri','Black',10,10);
+```
+let MyText = new Text('HelloWord','20px','Calibri','Black',10,10);
 	MyText.Draw();
 ```
 ```new Text('HelloWord','20px','Calibri','Black',10,10).Draw();
@@ -358,7 +363,7 @@ false at start and true at end.
 
 >Transition.Reset();
 
-with 'Transition.Reset'you can reset the values ​​of a transition.
+with 'Transition.Reset'you can reset the values of a transition.
 
 ###### Example
 
@@ -463,7 +468,7 @@ SurfaceTouch allows to implement touch actions for mobile devices on the Screen.
 
 >Game.SurfaceTouch.Init();
 
-This function returns the X and Y values ​​where the touch was made
+This function returns the X and Y values where the touch was made
 
 ````
 SurfaceTouch.X  
