@@ -214,7 +214,8 @@ This function allows you to implement images in your project, to enter an object
 
 > Images(X,Y,W,H,Url,Rotate,Point)
 
-```X is the position of the X axis of the image
+```
+X is the position of the X axis of the image
 And the position in and of the image
 W the width of the image
 H is the height of the image
@@ -224,10 +225,12 @@ Point is the center of the axis of the figure by default is "Upper-Left" "String
 ```
 
 ###### Example 1
-```let MyImage = new Images(0,0,100,100,'../image.png');
+```
+let MyImage = new Images(0,0,100,100,'../image.png');
 	   MyImage.Draw();
 ```
-```new Images(0,0,100,100,'../image.png').Draw();
+```
+new Images(0,0,100,100,'../image.png').Draw();
 ```
 
 ###### Example 2
@@ -265,7 +268,8 @@ Point is the center of the axis of the figure by default is "Upper-Left" "String
 ```let MySprite = new Sprite(0,0,0,0,100,100,'../url.png);
 		MySprite.Draw();
 ```
-```new Sprite(0,0,0,0,100,100,'../url.png).Draw();
+```
+new Sprite(0,0,0,0,100,100,'../url.png).Draw();
 ```
 ###### Example 2
 ```
@@ -287,6 +291,7 @@ let MySprite = new Sprite(0,0,0,0,100,100,'../url.png');
 As the name implies, enter text into the scene.
 
 >Text(Text,Size,Font,Colour,X,Y);
+
 ```
 Text is the text to use is a "string"
 Size It is the size of the text
@@ -296,10 +301,12 @@ X is for position on the X axis
 Y is the position on the Y axis
 ```
 ###### Example1
-```let MyText = new Text('HelloWord','20px','Calibri','Black',10,10);
+```
+let MyText = new Text('HelloWord','20px','Calibri','Black',10,10);
 	MyText.Draw();
 ```
-```new Text('HelloWord','20px','Calibri','Black',10,10).Draw();
+```
+new Text('HelloWord','20px','Calibri','Black',10,10).Draw();
 ```
 ###### Example2
 ```
@@ -333,7 +340,8 @@ Y is the position on the Y axis
 let debug = new Debug("Hello",0,0);
 	debug.Draw();
 ```
-```new Debug("Hello",0,0).Draw();
+```
+new Debug("Hello",0,0).Draw();
 ```
 
 ###### Receive Variable by debug
