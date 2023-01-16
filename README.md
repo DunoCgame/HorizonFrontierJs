@@ -165,14 +165,14 @@ let Square = new Square(0,0,100,100,0,"Upper-Left","green").Draw();
 
 ```
 let MySquare = new Square();
-MySquare.X=100;
-MySquare.Y=100;	
-MySquare.W=100;
-MySquare.H=100;
-MySquare.Rotate=0
-MySquare.Point="Upper-Left";
-MySquare.Colour="blue";
-MySquare.Draw(); 
+	MySquare.X=100;
+	MySquare.Y=100;	
+	MySquare.W=100;
+	MySquare.H=100;
+	MySquare.Rotate=0
+	MySquare.Point="Upper-Left";
+	MySquare.Colour="blue";
+	MySquare.Draw(); 
 
 ```
 >to paint the figure on the screen use 	```Square.Draw(); ```
@@ -225,11 +225,14 @@ Point is the center of the axis of the figure by default is "Upper-Left" "String
 ```
 
 ###### Example 1
+
 ```
 let MyImage = new Images(0,0,100,100,'../image.png');
 	   MyImage.Draw();
+	   
 ```
-```new Images(0,0,100,100,'../image.png').Draw();
+```
+new Images(0,0,100,100,'../image.png').Draw();
 ```
 
 ###### Example 2
@@ -269,7 +272,8 @@ Point is the center of the axis of the figure by default is "Upper-Left" "String
 let MySprite = new Sprite(0,0,0,0,100,100,'../url.png);
 		MySprite.Draw();
 ```
-```new Sprite(0,0,0,0,100,100,'../url.png).Draw();
+```
+new Sprite(0,0,0,0,100,100,'../url.png).Draw();
 ```
 ###### Example 2
 ```
@@ -304,7 +308,8 @@ Y is the position on the Y axis
 let MyText = new Text('HelloWord','20px','Calibri','Black',10,10);
 	MyText.Draw();
 ```
-```new Text('HelloWord','20px','Calibri','Black',10,10).Draw();
+```
+new Text('HelloWord','20px','Calibri','Black',10,10).Draw();
 ```
 ###### Example2
 ```
@@ -338,7 +343,8 @@ Y is the position on the Y axis
 let debug = new Debug("Hello",0,0);
 	debug.Draw();
 ```
-```new Debug("Hello",0,0).Draw();
+```
+new Debug("Hello",0,0).Draw();
 ```
 
 ###### Receive Variable by debug
