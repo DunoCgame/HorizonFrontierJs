@@ -152,12 +152,19 @@ Colour indicates the Colour that "String" will have
 ###### Example 1
 	
 ```
-let  Square = new Square(0,0,100,100,0,"Upper-Left","green");
+let Square = new Square(0,0,100,100,0,"Upper-Left","green");
+
+Square.Draw();
+
+```
+```
+let Square = new Square(0,0,100,100,0,"Upper-Left","green").Draw();
 ```
 
 ###### Example 2
+
 ```
-let  MySquare = new Square();
+let MySquare = new Square();
 MySquare.X=100;
 MySquare.Y=100;	
 MySquare.W=100;
@@ -181,19 +188,23 @@ Radius is the radius of the circumference
 Color indicates the color that "String" will have
 ```
 
-###### Example1
+###### Example 1
 ```
-Circle(0, 0, 0, 0, "red");
+let MyCircle = new Circle(0, 0, 0, 0, "red");
+	MyCircle.Draw
 ```
-###### Example2
+```
+new Circle(0, 0, 0, 0, "red").Draw();
+```
+###### Example 2
 ```
 let MyCircle = new Circle();
-MyCircle.X=100;	
-MyCircle.Y=100;
-MyCircle.Radius=50
-MyCircle.Rotate=0
-MyCircle.Colour="blue";
-MyCircle.Draw();
+	MyCircle.X=100;	
+	MyCircle.Y=100;
+	MyCircle.Radius=50
+	MyCircle.Rotate=0
+	MyCircle.Colour="blue";
+	MyCircle.Draw();
 ```
 >to paint the figure on the screen use ```Circle.Draw();```
 
@@ -203,8 +214,7 @@ This function allows you to implement images in your project, to enter an object
 
 > Images(X,Y,W,H,Url,Rotate,Point)
 
-```
-X is the position of the X axis of the image
+```X is the position of the X axis of the image
 And the position in and of the image
 W the width of the image
 H is the height of the image
@@ -214,20 +224,22 @@ Point is the center of the axis of the figure by default is "Upper-Left" "String
 ```
 
 ###### Example 1
+```let MyImage = new Images(0,0,100,100,'../image.png');
+	   MyImage.Draw();
 ```
-Images(0,0,100,100,'../image.png');
+```new Images(0,0,100,100,'../image.png').Draw();
 ```
-###### Example 1
-```
-let MyIMG = new Images();
-MyIMG.X = 200;
-MyIMG.Y = 200;
-MyIMG.W = 100;
-MyIMG.H = 100;
-MyIMG.Url = img;
-MyIMG.Rote = 0;
-MyIMG.Point = "Meddle-Center";
-MyIMG.Draw();
+
+###### Example 2
+```let MyIMG = new Images();
+		MyIMG.X = 200;
+		MyIMG.Y = 200;
+		MyIMG.W = 100;
+		MyIMG.H = 100;
+		MyIMG.Url = img;
+		MyIMG.Rote = 0;
+		MyIMG.Point = "Meddle-Center";
+		MyIMG.Draw();
 ```
 
 >to paint the figure on the screen use ```IMG.Draw();```
@@ -249,23 +261,24 @@ Url is the path of the image to use
 Rotate allows the figure to rotate
 Point is the center of the axis of the figure by default is "Upper-Left" "String"
 ```
-###### Example1
+###### Example 1
+```let MySprite = new Sprite(0,0,0,0,100,100,'../url.png);
+		MySprite.Draw();
 ```
-Sprite(0,0,0,0,100,100,'../url.png);
-
+```new Sprite(0,0,0,0,100,100,'../url.png).Draw();
 ```
-###### Example2
+###### Example 2
 ```
 let MySprite = new Sprite(0,0,0,0,100,100,'../url.png');
-MySprite.x=0;
-MySprite.y=0;
-MySprite.X=100;
-MySprite.Y=100;
-MySprite.W=100;
-MySprite.H=100;
-MySprite.Rotate=0
-MySprite.Point="Meddle-Center";
-MySprite.Draw();
+	MySprite.x=0;
+	MySprite.y=0;
+	MySprite.X=100;
+	MySprite.Y=100;
+	MySprite.W=100;
+	MySprite.H=100;
+	MySprite.Rotate=0
+	MySprite.Point="Meddle-Center";
+	MySprite.Draw();
 ```
 >to paint the figure on the screen use ```MySprite.Draw();```
 
@@ -283,19 +296,21 @@ X is for position on the X axis
 Y is the position on the Y axis
 ```
 ###### Example1
+```let MyText = new Text('HelloWord','20px','Calibri','Black',10,10);
+	MyText.Draw();
 ```
->Text('HelloWord','20px','Calibri','Black',10,10);
+```new Text('HelloWord','20px','Calibri','Black',10,10).Draw();
 ```
 ###### Example2
 ```
-> let MyText = new Text();
-MyText.Text = "HorizonFrontierJs";
-MyText.Tamano = '20px';
-MyText.Font = "Calibri";
-MyText.Color = 'white';
-MyText.X = Game.Screen.W/2-100;
-MyText.Y = Game.Screen.H/2;
-MyText.Draw();
+let MyText = new Text();
+	MyText.Text = "HorizonFrontierJs";
+	MyText.Tamano = '20px';
+	MyText.Font = "Calibri";
+	MyText.Color = 'white';
+	MyText.X = Game.Screen.W/2-100;
+	MyText.Y = Game.Screen.H/2;
+	MyText.Draw();
 ```
 
 >to paint the figure on the screen use ```MyText.Draw();```
@@ -305,16 +320,22 @@ MyText.Draw();
 Debug allows you to add a text for the purpose of being used to see the status of an event.
 
 >Debug(Var,X,Y);
+
 ```
 Var The value to show
 X is for position on the X axis
 Y is the position on the Y axis
 ```
 
-###### Example
+###### Example 1
+
 ```
-Debug(transition.state,0,0);
+let debug = new Debug("Hello",0,0);
+	debug.Draw();
 ```
+```new Debug("Hello",0,0).Draw();
+```
+
 ###### Receive Variable by debug
 ```
 var Num = 10;
@@ -344,7 +365,7 @@ with 'Transition.Reset'you can reset the values ​​of a transition.
 ```
 Transition.A("blue");
 
-Debug("state"+":"+Transition.state,10,10);
+new Debug("state"+":"+Transition.state,10,10).Draw();
 
 ```
 ## Mouse
@@ -365,6 +386,23 @@ H Contour height
 R Contour radius
 ```
 >Get value from mouse
+```
+- Mouse.PosX;
+- Mouse.PosY;
+- Mouse.W;
+- Mouse.H;
+```
+
+>Mouse.Click(Visibility,Colour)
+
+```
+Visibility 
+It is a boolean value if it is true it shows the outline of the cursor if it is false it will not show anything
+Colour It is the color of the contour
+
+```
+>Get value from mouse
+
 ```
 - Mouse.PosX;
 - Mouse.PosY;
@@ -615,7 +653,7 @@ else{ state_Collision=false;}
 ###### Example-2
 
 ````
-var Collision  = new BoxCollision(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
+var Collision  =  BoxCollision(PosX-Object1, PosY-Object1, W-Object1, H-Object1, PosX-Object2, PosY-Object2, W-Object2, H-Object2);
 
 if(!Collision){			 			}
 		 else{	/*Action*/ }

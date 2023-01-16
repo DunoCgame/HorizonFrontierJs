@@ -1,7 +1,7 @@
 {
   "name": "horizonfrontierjs",
   "description": "Library for the development of Video Games using Javascript technology",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "main": "HorizonFrontierJs.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,7 @@
     "Electron",
     "Web",
     "node",
+     "Game",
     "Javascript"
   ],
   "author": "Luis<'luisdunocastellano@gmail.com'>",
@@ -21,8 +22,6 @@
   "bugs": {
     "url": "https://github.com/DunoCgame/HorizonFrontierJs/issues"
   },
-  "publishConfig": {
-  "registry":"https://npm.pkg.github.com"
-        },
+  
   "homepage": "https://github.com/DunoCgame/HorizonFrontierJs"
 }

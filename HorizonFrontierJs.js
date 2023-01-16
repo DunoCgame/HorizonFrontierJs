@@ -142,7 +142,7 @@ function Square(X,Y,W,H,Rotate,Point,Colour){
 			this.W = W || 100;
 			this.H = H || 100;
 			this.Rotate = Rotate || 0;
-			this.Colour = Colour || "grey";
+			this.Colour = Colour || "red";
 			this.Point = Point || "Upper-Left";
 			this.Draw = function(){		
 				
@@ -200,7 +200,7 @@ function Circle(X, Y, Radius, Colour){
 	this.X = X || 0;
 	this.Y = Y || 0;
 	this.Radius = Radius || 10;
-	this.Colour = Colour || "grey";
+	this.Colour = Colour || "Red";
 	
 	this.Draw = function(){
 	
@@ -232,7 +232,7 @@ function Images(X,Y,W,H,Url,Rotate,Point){
 	this.H = H || 100;
 	this.Rotate = Rotate || 0;
 	this.Point = Point || "Upper-Left";
-	this.Url = Url || "node_modules/horizonfrontierjs/Horizon.png" || "https://raw.githubusercontent.com/DunoCgame/HorizonFrontierJs/master/Horizon.png";
+	this.Url = Url  || "https://raw.githubusercontent.com/DunoCgame/HorizonFrontierJs/master/Horizon.png" || "node_modules/horizonfrontierjs/Horizon.png";
 
 
 	this.Draw = function(){
@@ -294,87 +294,97 @@ function Images(X,Y,W,H,Url,Rotate,Point){
 }
 
  /*Sprite*/ /*Sprite*/ /*Sprite*/
-function Sprite(x,y,X,Y,W,H,Url,Rotate,Point){
+function Sprite(x,y,X,Y,W,H,Url,Rotate,Point,example){
 	
-	this.Url = Url || "node_modules/horizonfrontierjs/Horizon.png" || "https://raw.githubusercontent.com/DunoCgame/HorizonFrontierJs/master/Horizon.png";
+	this.Url = Url || "https://raw.githubusercontent.com/DunoCgame/HorizonFrontierJs/master/Sprite.png.png" || "node_modules/horizonfrontierjs/Sprite.png";
 	
 	/**La IMAGEN LIENSO **/
-	this.x = x;
-	this.y = y;
+	this.x = x || 0;
+	this.y = y || 0;
 	
 	/**La IMAGEN TOTAL **/
-	this.X = X;
-	this.Y = Y;
+	this.X = X || 0;
+	this.Y = Y || 0;
 
-	this.w = W;
-	this.h = H;
+	this.w = W || 50;
+	this.h = H || 50;
 	
-	this.W = W;
-	this.H = H;
+	this.W = W || 50;
+	this.H = H || 50;
 	
 	this.Rotate = Rotate || 0;
 	this.Point = Point || "Upper-Left";
 	
         this.Draw = function(){
+
+
+        if(example==true){
+
+        	this.x+=50;
+
+        	if(this.x==100){
+        		this.x=0;
+        	}
+        }	
 		
-	ctx=Screen.context;
-	ctx.save();
+		ctx=Screen.context;
+		ctx.save();
+		
+		var Url = new Image();
+		Url.src = this.Url;
+		ctx.translate(this.X, this.Y);					
+		ctx.rotate(this.Rotate*Math.PI/180);
 	
-	var Url = new Image();
-	Url.src = this.Url;
-	ctx.translate(this.X, this.Y);					
-	ctx.rotate(this.Rotate*Math.PI/180);
-	
-		switch(this.Point){
-						
-		/**Superior-Upper**/
-			case "Upper-Left":
-				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, 0, this.W, this.H );
-			break;
-			case "Upper-Center":
-	
-				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.W/2, this.W, this.H );				
-			break;
-			case "Upper-Right":
-			
-				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, this.W, this.W, this.H );
-				
-			break;
-			
-		/**Medio-Meddle**/
-			case "Meddle-Left":
-				
-			
-			ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.H/2, this.W, this.H );
-				
-			break;
-			case "Meddle-Center":
-				
-			ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W/2, -this.H/2, this.W, this.H );
-			
-			break;
-			case "Meddle-Right":							
+			switch(this.Point){
+							
+			/**Superior-Upper**/
+				case "Upper-Left":
+					ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, 0, this.W, this.H );
+				break;
+				case "Upper-Center":
 		
-			ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W, -this.H/2, this.W, this.H );
-		
-			break;
-			
-		/**Inferior-Lower**/	
-			case "Lower-Left":						
-		
-				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.W, this.W, this.H );
-			break;
-			case "Lower-Center":						
-			
-				ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W/2, -this.H, this.W, this.H );
-			break;
-			case "Lower-Right":
-			
-				ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W, -this.H, this.W, this.H );
+					ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.W/2, this.W, this.H );				
+				break;
+				case "Upper-Right":
 				
-			break;
+					ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, this.W, this.W, this.H );
+					
+				break;
+				
+			/**Medio-Meddle**/
+				case "Meddle-Left":
+					
+				
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.H/2, this.W, this.H );
+					
+				break;
+				case "Meddle-Center":
+					
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W/2, -this.H/2, this.W, this.H );
+				
+				break;
+				case "Meddle-Right":							
 			
-			default:
+				ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W, -this.H/2, this.W, this.H );
+			
+				break;
+				
+			/**Inferior-Lower**/	
+				case "Lower-Left":						
+			
+					ctx.drawImage(Url, this.x, this.y, this.w, this.h, 0, -this.W, this.W, this.H );
+				break;
+				case "Lower-Center":						
+				
+					ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W/2, -this.H, this.W, this.H );
+				break;
+				case "Lower-Right":
+				
+					ctx.drawImage(Url, this.x, this.y, this.w, this.h, -this.W, -this.H, this.W, this.H );
+					
+				break;
+				
+				default:
 				
 			}	
 		
@@ -575,16 +585,16 @@ Reset:function(){
 /*****************************************************/		
 /*****************************************************/				
 /*Posicion de mause*/ /*Posicion de mause*/ /*Posicion de mause*/
-var Mouse = {
+let Mouse = {
 	PosX:0,
 	PosY:0,
 	W:0,
 	H:0,
 	Position:function(Visibility,Colour,W,H,R){
 		
-		var mousePos=0;
-		var canvas = document.getElementById('canvas');
-		var ctx = canvas.getContext('2d');
+		let mousePos=0;
+		let canvas = document.getElementById('canvas');
+		let ctx = canvas.getContext('2d');
 
 
 		canvas.onmousemove = function (e) {
@@ -626,7 +636,65 @@ var Mouse = {
 		Mouse.W=W;
 		Mouse.H=H;
 			
-	}
+	},
+		Click:function(Visibility,Colour){
+			
+			var canvas = document.getElementById('canvas');
+				
+				canvas.onmousedown = function (e) {
+					
+						 Mouse.PosX = e.pageX - this.offsetLeft;
+			  			 Mouse.PosY = e.pageY - this.offsetTop;
+
+			  			 Mouse.StateClick=true;
+			  			 
+
+				}
+				canvas.onmouseup = function (e) {
+					
+	
+
+			  			 Mouse.StateClick=false;
+			  			 
+			  		
+				}
+
+
+
+		let canvas = document.getElementById('canvas');
+		let ctx = canvas.getContext('2d');
+
+				if(Visibility==true){
+				
+	                ctx.save();
+		        ctx.fillStyle="grey";
+		        ctx.fillRect(Mouse.PosX,Mouse.PosY,50,50);
+		        ctx.restore();
+			
+		        ctx.save();
+		        ctx.fillStyle="grey";
+		        ctx.beginPath();
+		        ctx.arc(Mouse.PosX,Mouse.PosY,50,0,Math.PI*2,true);
+		        ctx.closePath;
+		        ctx.fill();
+		
+		        canvas.style.cursor = "block";
+		
+		
+                        ctx.save();
+                        ctx.fillStyle="white";
+                        ctx.font = "15px Calibri";
+                        ctx.fillText("X"+":"+Mouse.PosX+"|"+"Y"+":"+Mouse.PosY+"",Mouse.PosX,Mouse.PosY);
+                        ctx.restore();
+                        
+		}
+		else{
+			
+		        canvas.style.cursor = "none";
+			
+		}
+
+		}
 }//fin de la funcions
 /*Posicion de mause*/ /*Posicion de mause*/ /*Posicion de mause*/
 /*****************************************************/	
@@ -680,7 +748,7 @@ function BoxCollision(PosX1,PosY1,W1,H1,PosX2,PosY2,W2,H2){
 	}
 
 //CircleCollision
-function CircleCollision(PosX1, PosY1, Radius1 PosX2, PosY2, Radius2){
+function CircleCollision(PosX1, PosY1, Radius1, PosX2, PosY2, Radius2){
 
 		var Distancia_entre_dos_Puntos=Math.floor(Math.sqrt((Math.pow(PosX1-PosX2,2))+(Math.pow(PosY1-PosY2,2))));
 		if(Distancia_entre_dos_Puntos<=Radius1+Radius2){
